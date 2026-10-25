@@ -1,4 +1,4 @@
-# CapiTrack — Autonomous Wealth & Expense Operating System
+# CapiTrack - Autonomous Wealth & Expense Operating System
 
 An Apple-keynote style luxury scrollytelling product showcase for **CapiTrack**: The local-first, zero-knowledge financial operating system for founders, freelancers, and modern businesses.
 

@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CapiTrack — Autonomous Wealth & Expense Operating System</title>
-  <meta name="description" content="A luxury Apple-keynote style scrollytelling product deck for CapiTrack: The local-first, zero-knowledge financial operating system for founders, freelancers, and modern businesses.">
+  <title>CapiTrack - Autonomous Wealth & Expense Operating System</title>
+  <meta name="description"
+    content="A luxury Apple-keynote style scrollytelling product deck for CapiTrack: The local-first, zero-knowledge financial operating system for founders, freelancers, and modern businesses.">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="images/icon_512.png">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png?v=2">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icon_512.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png?v=2">
 
   <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet">
 
   <!-- GSAP & ScrollTrigger CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -26,34 +34,34 @@
       --bg-void: #05060a;
       --bg-surface: #0a0d16;
       --bg-card: #0d1220;
-      
+
       --accent-emerald: #10b981;
       --accent-emerald-light: #34d399;
       --accent-emerald-glow: rgba(16, 185, 129, 0.35);
-      
+
       --accent-cyan: #06b6d4;
       --accent-cyan-light: #38bdf8;
       --accent-cyan-glow: rgba(6, 182, 212, 0.35);
-      
+
       --accent-violet: #8b5cf6;
       --accent-violet-light: #c084fc;
-      
+
       --accent-amber: #f59e0b;
       --accent-amber-light: #fbbf24;
-      
+
       --accent-rose: #f43f5e;
       --accent-rose-light: #fb7185;
-      
+
       --text-primary: #f8fafc;
       --text-secondary: #94a3b8;
       --text-muted: #64748b;
-      
+
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-highlight: rgba(255, 255, 255, 0.18);
-      
+
       --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'Space Grotesk', monospace;
-      
+
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 24px;
@@ -62,7 +70,9 @@
     }
 
     /* Base Reset: DO NOT put overflow on html, body, or root containers to preserve position: sticky */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -72,7 +82,8 @@
       scroll-behavior: smooth;
     }
 
-    html, body {
+    html,
+    body {
       width: 100%;
       background-color: var(--bg-void);
       color: var(--text-primary);
@@ -80,6 +91,13 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       line-height: 1.6;
+    }
+
+    img,
+    video {
+      -webkit-user-drag: none;
+      user-drag: none;
+      -webkit-touch-callout: none;
     }
 
     ::selection {
@@ -92,7 +110,10 @@
       position: relative;
     }
 
-    h1, h2, h3, h4 {
+    h1,
+    h2,
+    h3,
+    h4 {
       font-weight: 800;
       letter-spacing: -0.035em;
       line-height: 1.1;
@@ -249,7 +270,7 @@
       background: rgba(5, 6, 10, 0.82);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: none;
     }
 
     .nav-inner {
@@ -480,7 +501,7 @@
       position: relative;
       padding: 165px 0 80px;
       text-align: center;
-      z-index: 10;
+      z-index: 25;
     }
 
     .hero-pill {
@@ -701,7 +722,7 @@
       position: relative;
       width: 100%;
       background: var(--bg-void);
-      z-index: 20;
+      z-index: 10;
       padding: 90px 0 160px;
     }
 
@@ -744,11 +765,14 @@
     }
 
     .deck-top-nav {
+      position: relative;
       pointer-events: auto;
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 7px 12px;
+      padding: 6px 12px;
+      min-height: 48px;
+      height: 48px;
       border-radius: var(--radius-pill);
       background: rgba(10, 13, 22, 0.94);
       border: 1px solid rgba(255, 255, 255, 0.16);
@@ -758,6 +782,9 @@
       max-width: 95vw;
       overflow-x: auto;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      box-sizing: border-box;
     }
 
     .deck-top-nav::-webkit-scrollbar {
@@ -765,17 +792,27 @@
     }
 
     .deck-nav-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      line-height: 1;
+      box-sizing: border-box;
+      margin: 0;
       background: transparent;
       border: none;
       color: var(--text-muted);
       font-family: var(--font-main);
       font-size: 0.82rem;
       font-weight: 750;
-      padding: 7px 16px;
+      padding: 0 16px;
       border-radius: var(--radius-pill);
       cursor: pointer;
       transition: all 0.25s ease;
       white-space: nowrap;
+      opacity: 1;
+      visibility: visible;
     }
 
     .deck-nav-btn:hover {
@@ -785,7 +822,7 @@
     .deck-nav-btn.active {
       background: #ffffff;
       color: #05060a;
-      box-shadow: 0 2px 14px rgba(255, 255, 255, 0.4);
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.35);
     }
 
     /* Container for the 7 stacked cards */
@@ -835,6 +872,7 @@
       background: linear-gradient(135deg, #09131a 0%, #060e14 100%);
       border-color: rgba(16, 185, 129, 0.28);
     }
+
     .theme-emerald::before {
       content: "";
       position: absolute;
@@ -850,6 +888,7 @@
       background: linear-gradient(135deg, #09141f 0%, #060c14 100%);
       border-color: rgba(6, 182, 212, 0.28);
     }
+
     .theme-cyan::before {
       content: "";
       position: absolute;
@@ -865,6 +904,7 @@
       background: linear-gradient(135deg, #181206 0%, #0d0a04 100%);
       border-color: rgba(245, 158, 11, 0.28);
     }
+
     .theme-amber::before {
       content: "";
       position: absolute;
@@ -880,6 +920,7 @@
       background: linear-gradient(135deg, #130a21 0%, #0a0512 100%);
       border-color: rgba(139, 92, 246, 0.28);
     }
+
     .theme-violet::before {
       content: "";
       position: absolute;
@@ -895,6 +936,7 @@
       background: linear-gradient(135deg, #1b0c14 0%, #0d060a 100%);
       border-color: rgba(244, 63, 94, 0.28);
     }
+
     .theme-rose::before {
       content: "";
       position: absolute;
@@ -910,6 +952,7 @@
       background: linear-gradient(135deg, #0e1118 0%, #07080c 100%);
       border-color: rgba(255, 255, 255, 0.2);
     }
+
     .theme-obsidian::before {
       content: "";
       position: absolute;
@@ -1050,18 +1093,6 @@
       object-fit: cover;
     }
 
-    .phone-island {
-      position: absolute;
-      top: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 76px;
-      height: 18px;
-      background: #000000;
-      border-radius: 12px;
-      z-index: 10;
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
-    }
 
     /* Floating Status Pill on Mockup */
     .floating-pill {
@@ -1100,6 +1131,10 @@
       margin-bottom: 20px;
     }
 
+    .matrix-mobile-toggle-wrap {
+      display: none;
+    }
+
     .matrix-table-wrap {
       margin-top: 60px;
       border-radius: var(--radius-lg);
@@ -1116,7 +1151,8 @@
       text-align: left;
     }
 
-    .matrix-table th, .matrix-table td {
+    .matrix-table th,
+    .matrix-table td {
       padding: 22px 28px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       font-size: 0.96rem;
@@ -1131,7 +1167,8 @@
       color: var(--text-muted);
     }
 
-    .matrix-table th.col-capitrack, .matrix-table td.col-capitrack {
+    .matrix-table th.col-capitrack,
+    .matrix-table td.col-capitrack {
       background: rgba(16, 185, 129, 0.06);
       border-left: 1px solid rgba(16, 185, 129, 0.2);
       border-right: 1px solid rgba(16, 185, 129, 0.2);
@@ -1257,19 +1294,19 @@
       --bg-void: #f8fafc;
       --bg-surface: #f1f5f9;
       --bg-card: #ffffff;
-      
+
       --accent-emerald: #059669;
       --accent-emerald-light: #10b981;
       --accent-emerald-glow: rgba(5, 150, 105, 0.2);
-      
+
       --accent-cyan: #0891b2;
       --accent-cyan-light: #06b6d4;
       --accent-cyan-glow: rgba(8, 145, 178, 0.2);
-      
+
       --text-primary: #0f172a;
       --text-secondary: #475569;
       --text-muted: #64748b;
-      
+
       --border-subtle: rgba(15, 23, 42, 0.08);
       --border-highlight: rgba(15, 23, 42, 0.16);
     }
@@ -1281,7 +1318,7 @@
 
     html[data-theme="light"] .nav-header {
       background: rgba(248, 250, 252, 0.88);
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: none;
     }
 
     html[data-theme="light"] .brand-name {
@@ -1465,7 +1502,7 @@
       color: #64748b;
     }
 
-    html[data-theme="light"] .matrix-table th, 
+    html[data-theme="light"] .matrix-table th,
     html[data-theme="light"] .matrix-table td {
       border-bottom-color: rgba(15, 23, 42, 0.08);
       color: #0f172a;
@@ -1480,6 +1517,22 @@
       background: rgba(16, 185, 129, 0.08);
       border-left: 1px solid rgba(16, 185, 129, 0.25);
       border-right: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    html[data-theme="light"] .matrix-mobile-toggle {
+      background: #e2e8f0;
+      border-color: rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    html[data-theme="light"] .matrix-toggle-btn {
+      color: #64748b;
+    }
+
+    html[data-theme="light"] .matrix-toggle-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     }
 
     html[data-theme="light"] .cta-box {
@@ -1528,17 +1581,22 @@
       .container {
         padding: 0 20px;
       }
+
       .deck-slide {
         padding: 36px 32px;
         gap: 28px;
       }
+
       .card-title {
         font-size: 2.1rem;
       }
+
       .phone-mockup {
         width: 220px;
       }
-      .matrix-table th, .matrix-table td {
+
+      .matrix-table th,
+      .matrix-table td {
         padding: 16px 20px;
       }
     }
@@ -1548,28 +1606,36 @@
       .nav-menu {
         display: none;
       }
+
       .mobile-nav-toggle {
         display: flex;
       }
+
       .mobile-menu-drawer {
         display: block;
       }
+
       .hero-section {
         padding: 130px 0 50px;
       }
+
       .hero-title {
         font-size: clamp(2.3rem, 5.5vw, 3.6rem);
       }
+
       .hero-video-wrap {
         margin-top: 36px;
       }
+
       .video-overlay-controls {
         padding: 12px 18px 16px;
       }
+
       .video-sound-btn {
         padding: 7px 14px;
         font-size: 0.78rem;
       }
+
       .video-ctrl-btn {
         width: 38px;
         height: 38px;
@@ -1579,30 +1645,118 @@
       .showcase-section {
         padding: 60px 0 120px;
       }
+
       .deck-top-nav-wrap {
         top: 70px;
         margin-bottom: 24px;
       }
+
       .sticky-card-wrapper {
         top: 110px;
         margin-bottom: 180px;
       }
+
       .deck-slide {
         grid-template-columns: 1fr;
         padding: 32px 28px;
         min-height: auto;
         gap: 24px;
       }
+
       .card-visual {
         order: -1;
         justify-content: center;
       }
+
       .phone-mockup {
         width: 190px;
       }
+
       .floating-pill {
         font-size: 0.78rem;
         padding: 7px 14px;
+      }
+    }
+
+    /* Breakpoint 2.5: Tablets Portrait & Phablets */
+    @media (max-width: 768px) {
+      .matrix-mobile-toggle-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin: 28px auto 14px;
+        text-align: center;
+      }
+
+      .matrix-toggle-label {
+        font-size: 0.74rem;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .matrix-mobile-toggle {
+        display: inline-flex;
+        background: rgba(10, 13, 22, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: var(--radius-pill);
+        padding: 4px;
+        gap: 4px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      }
+
+      .matrix-toggle-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        font-family: var(--font-main);
+        font-size: 0.78rem;
+        font-weight: 750;
+        padding: 8px 16px;
+        border-radius: var(--radius-pill);
+        cursor: pointer;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+      }
+
+      .matrix-toggle-btn.active {
+        background: #ffffff;
+        color: #05060a;
+        box-shadow: 0 2px 10px rgba(255, 255, 255, 0.35);
+      }
+
+      .matrix-table-wrap {
+        margin-top: 14px;
+        border-radius: 16px;
+        overflow-x: hidden !important;
+        width: 100%;
+      }
+
+      .matrix-table {
+        table-layout: fixed;
+        width: 100%;
+      }
+
+      .matrix-table .col-feature {
+        width: 38%;
+      }
+
+      .matrix-table .col-capitrack {
+        width: 32%;
+      }
+
+      .matrix-table .col-competitor {
+        width: 30%;
+      }
+
+      .matrix-table[data-active-competitor="bank"] .col-sheets {
+        display: none !important;
+      }
+
+      .matrix-table[data-active-competitor="sheets"] .col-bank {
+        display: none !important;
       }
     }
 
@@ -1611,52 +1765,64 @@
       .container {
         padding: 0 16px;
       }
+
       .brand-name {
         font-size: 1.15rem;
       }
+
       .brand-logo img {
         width: 30px;
         height: 30px;
       }
+
       .nav-cta {
-        display: none; /* Accessible in mobile dropdown */
+        display: none;
+        /* Accessible in mobile dropdown */
       }
+
       .nav-actions {
         gap: 8px;
       }
 
       /* Hero Section on Mobile */
       .hero-section {
-        padding: 100px 0 35px;
+        padding: 100px 0 65px;
       }
+
       .hero-pill {
         font-size: 0.72rem;
         padding: 5px 12px;
         margin-bottom: 16px;
       }
+
       .hero-title {
         font-size: 2rem;
         line-height: 1.08;
         margin-bottom: 16px;
       }
+
       .hero-subtitle {
         font-size: 0.92rem;
         line-height: 1.5;
         margin-bottom: 24px;
         padding: 0 4px;
       }
+
       .hero-actions {
         flex-direction: column;
         width: 100%;
         gap: 10px;
         margin-bottom: 30px;
       }
-      .btn-primary, .btn-secondary {
+
+      .btn-primary,
+      .btn-secondary {
         width: 100%;
         justify-content: center;
         padding: 14px 22px;
         font-size: 0.95rem;
       }
+
       .hero-trust {
         flex-direction: column;
         gap: 8px;
@@ -1666,26 +1832,33 @@
       /* Hero Video on Mobile */
       .hero-video-wrap {
         margin-top: 24px;
+        margin-bottom: 24px;
         border-radius: 18px;
         padding: 4px;
       }
+
       .video-container {
         border-radius: 14px;
       }
+
       .video-overlay-controls {
-        padding: 8px 12px 12px;
+        padding: 8px 12px 10px;
       }
+
       .video-sound-btn {
         padding: 6px 12px;
         font-size: 0.72rem;
         gap: 6px;
       }
+
       .video-sound-btn .sound-text {
         font-size: 0.72rem;
       }
+
       .video-right-controls {
         gap: 6px;
       }
+
       .video-ctrl-btn {
         width: 34px;
         height: 34px;
@@ -1694,98 +1867,125 @@
 
       /* Showcase Section on Mobile */
       .showcase-section {
-        padding: 40px 0 80px;
+        padding: 50px 0 80px;
+        position: relative;
+        z-index: 10;
       }
+
       .showcase-header {
         margin-bottom: 20px;
         padding: 0 10px;
       }
+
       .showcase-main-title {
         font-size: 1.75rem;
         line-height: 1.12;
       }
+
       .showcase-subtitle {
         font-size: 0.9rem;
       }
 
       /* Sticky Chapter Nav on Mobile */
       .deck-top-nav-wrap {
-        top: 60px;
-        padding: 4px 10px;
-        margin-bottom: 16px;
+        top: 66px;
+        padding: 6px 12px;
+        margin-bottom: 18px;
       }
+
       .deck-top-nav {
-        padding: 4px 6px;
-        gap: 4px;
+        padding: 5px 8px;
+        gap: 5px;
+        min-height: 42px;
+        height: 42px;
+        box-sizing: border-box;
       }
+
       .deck-nav-btn {
-        padding: 5px 10px;
-        font-size: 0.72rem;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        line-height: 1;
+        padding: 0 12px;
+        font-size: 0.74rem;
+        box-sizing: border-box;
+        margin: 0;
       }
 
       /* Sticky Card on Mobile */
       .cards-deck-container {
         padding: 0 10px;
       }
+
       .sticky-card-wrapper {
-        top: 70px;
+        top: 118px;
         margin-bottom: 110px;
       }
+
       .deck-slide {
         padding: 20px 16px 18px;
         border-radius: 20px;
         gap: 16px;
       }
+
       .card-chapter-num {
         font-size: 0.72rem;
         margin-bottom: 8px;
       }
+
       .card-title {
         font-size: 1.35rem;
         line-height: 1.15;
         margin-bottom: 10px;
       }
+
       .card-description {
         font-size: 0.86rem;
         line-height: 1.45;
         margin-bottom: 14px;
       }
+
       .feature-points {
         display: none;
       }
+
       .card-visual {
         order: -1;
         margin: 0 auto;
       }
+
       .phone-mockup {
         width: 140px;
         padding: 7px;
         border-radius: 28px;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
       }
+
       .phone-screen {
         border-radius: 20px;
         max-height: 200px;
       }
-      .phone-island {
-        width: 48px;
-        height: 12px;
-        top: 10px;
-      }
+
       .floating-pill {
         display: none;
       }
+
       .metrics-strip {
         gap: 8px;
         padding-top: 14px;
       }
+
       .metric-box {
         padding: 8px 6px;
         text-align: center;
       }
+
       .metric-value {
         font-size: 0.95rem;
       }
+
       .metric-label {
         font-size: 0.65rem;
         letter-spacing: 0.02em;
@@ -1795,37 +1995,147 @@
       .matrix-section {
         padding: 60px 0 50px;
       }
+
       .matrix-section h2 {
         font-size: 1.8rem;
       }
+
       .matrix-section p {
         font-size: 0.9rem;
       }
-      .matrix-table-wrap {
-        margin-top: 30px;
-        border-radius: 16px;
+
+      /* Mobile Competitor Segmented Switcher */
+      .matrix-mobile-toggle-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin: 24px auto 14px;
+        text-align: center;
       }
-      .matrix-table th, .matrix-table td {
-        padding: 12px 14px;
-        font-size: 0.8rem;
+
+      .matrix-toggle-label {
+        font-size: 0.74rem;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .matrix-mobile-toggle {
+        display: inline-flex;
+        background: rgba(10, 13, 22, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: var(--radius-pill);
+        padding: 4px;
+        gap: 4px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      }
+
+      .matrix-toggle-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        font-family: var(--font-main);
+        font-size: 0.76rem;
+        font-weight: 750;
+        padding: 7px 14px;
+        border-radius: var(--radius-pill);
+        cursor: pointer;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+      }
+
+      .matrix-toggle-btn.active {
+        background: #ffffff;
+        color: #05060a;
+        box-shadow: 0 2px 10px rgba(255, 255, 255, 0.35);
+      }
+
+      /* Zero Horizontal Scroll Head-to-Head Table */
+      .matrix-table-wrap {
+        margin-top: 14px;
+        border-radius: 16px;
+        overflow-x: hidden !important;
+        width: 100%;
+      }
+
+      .matrix-table {
+        table-layout: fixed;
+        width: 100%;
+      }
+
+      /* 3 Columns fit 100% of mobile viewport: 38% + 32% + 30% = 100% */
+      .matrix-table .col-feature {
+        width: 38%;
+      }
+
+      .matrix-table .col-capitrack {
+        width: 32%;
+      }
+
+      .matrix-table .col-competitor {
+        width: 30%;
+      }
+
+      /* Toggle Visibility on Mobile */
+      .matrix-table[data-active-competitor="bank"] .col-sheets {
+        display: none !important;
+      }
+
+      .matrix-table[data-active-competitor="sheets"] .col-bank {
+        display: none !important;
+      }
+
+      .matrix-table th,
+      .matrix-table td {
+        padding: 12px 8px;
+        word-break: break-word;
+      }
+
+      .matrix-table th {
+        font-size: 0.7rem;
+        padding: 10px 8px;
+      }
+
+      .matrix-table th.col-capitrack {
+        font-size: 0.78rem;
+      }
+
+      .matrix-table td strong {
+        font-size: 0.75rem;
+        line-height: 1.25;
+        display: block;
+      }
+
+      .check-yes,
+      .check-no {
+        font-size: 0.72rem;
+        line-height: 1.3;
+        gap: 3px;
+        display: inline-flex;
       }
 
       /* CTA Box on Mobile */
       .cta-section {
         padding: 60px 0 80px;
       }
+
       .cta-box {
         padding: 36px 18px;
         border-radius: 20px;
       }
+
       .cta-box h2 {
         font-size: 1.7rem;
       }
+
       .cta-box p {
         font-size: 0.92rem;
         margin-bottom: 24px;
       }
-      .cta-box .btn-primary, 
+
+      .cta-box .btn-primary,
       .cta-box .btn-secondary {
         width: 100%;
         padding: 15px 24px;
@@ -1836,19 +2146,23 @@
       .site-footer {
         padding: 30px 0;
       }
+
       .footer-container {
         flex-direction: column;
         align-items: center;
         text-align: center;
         gap: 16px;
       }
+
       .footer-brand-wrap {
         justify-content: center;
       }
+
       .footer-links {
         justify-content: center;
         gap: 18px;
       }
+
       .site-footer a {
         font-size: 0.85rem;
       }
@@ -1856,36 +2170,54 @@
 
     /* Breakpoint 4: Ultra Compact Screens */
     @media (max-width: 380px) {
+      .hero-section {
+        padding: 90px 0 55px;
+      }
+
+      .hero-video-wrap {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
       .hero-title {
         font-size: 1.75rem;
       }
+
       .video-overlay-controls {
-        padding: 6px 8px 10px;
+        padding: 6px 8px 8px;
       }
+
       .video-sound-btn {
         padding: 5px 8px;
         font-size: 0.66rem;
       }
+
       .video-sound-btn .sound-text {
         font-size: 0.66rem;
       }
+
       .video-right-controls {
         gap: 5px;
       }
+
       .video-ctrl-btn {
         width: 30px;
         height: 30px;
       }
+
       .phone-mockup {
         width: 120px;
       }
+
       .card-title {
         font-size: 1.2rem;
       }
+
       .metrics-strip {
         grid-template-columns: 1fr;
         gap: 6px;
       }
+
       .metric-box {
         display: flex;
         justify-content: space-between;
@@ -1895,7 +2227,8 @@
     }
   </style>
 </head>
-<body>
+
+<body oncontextmenu="return false;">
 
   <div class="site-wrapper">
 
@@ -1907,7 +2240,7 @@
     <header class="nav-header">
       <div class="container nav-inner">
         <a href="#" class="brand-logo">
-          <img src="images/icon_512.png" alt="CapiTrack Icon" width="36" height="36">
+          <img src="images/icon_512.png?v=2" alt="CapiTrack Icon" width="36" height="36">
           <span class="brand-name">CapiTrack</span>
         </a>
 
@@ -1919,9 +2252,11 @@
 
         <div class="nav-actions">
           <!-- Light / Dark Mode Toggle Button -->
-          <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light and Dark Mode" title="Toggle Light/Dark Theme">
+          <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light and Dark Mode"
+            title="Toggle Light/Dark Theme">
             <!-- Sun Icon (visible in dark mode) -->
-            <svg class="theme-svg theme-svg-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="theme-svg theme-svg-sun" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="4.5"></circle>
               <line x1="12" y1="2" x2="12" y2="4.5"></line>
               <line x1="12" y1="19.5" x2="12" y2="22"></line>
@@ -1933,7 +2268,8 @@
               <line x1="18.01" y1="5.99" x2="19.78" y2="4.22"></line>
             </svg>
             <!-- Moon Icon (visible in light mode) -->
-            <svg class="theme-svg theme-svg-moon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="theme-svg theme-svg-moon" width="19" height="19" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
             </svg>
           </button>
@@ -1944,7 +2280,8 @@
           </a>
 
           <!-- Mobile Hamburger Toggle Button -->
-          <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu"
+            aria-expanded="false">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
@@ -1979,7 +2316,8 @@
         </h1>
 
         <p class="hero-subtitle">
-          Zero manual typing. Zero cloud data harvesting. CapiTrack captures transactions in real-time, models your cash burn, and reconciles shared khatas with pristine clarity.
+          Zero manual typing. Zero cloud data harvesting. CapiTrack captures transactions in real-time, models your cash
+          burn, and reconciles shared credit ledgers with pristine clarity.
         </p>
 
         <div class="hero-actions">
@@ -2001,18 +2339,8 @@
         <!-- Hero Cinema Video Showcase -->
         <div class="hero-video-wrap">
           <div class="video-container">
-            <video
-              id="heroVideo"
-              class="hero-video-player"
-              playsinline
-              autoplay
-              muted
-              loop
-              preload="auto"
-              poster="images/feature_graphic.png"
-              width="1920"
-              height="1080"
-            >
+            <video id="heroVideo" class="hero-video-player" playsinline loop preload="auto"
+              poster="images/feature_graphic.png" width="1920" height="1080">
               <source src="images/CapiTrack_30s_landscape_16x9_v3.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -2020,31 +2348,37 @@
             <!-- Video Overlay & Interactive Controls -->
             <div class="video-overlay-controls">
               <!-- Sound Toggle Button -->
-              <button type="button" class="video-sound-btn" id="soundToggleBtn" aria-label="Toggle Sound">
+              <button type="button" class="video-sound-btn" id="soundToggleBtn" aria-label="Toggle Sound"
+                style="background: rgba(16, 185, 129, 0.3); border-color: rgba(16, 185, 129, 0.6);">
                 <span class="sound-icon" id="soundIcon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
                   </svg>
                 </span>
-                <span class="sound-text" id="soundText">Muted · Click for Audio</span>
+                <span class="sound-text" id="soundText">Audio On</span>
               </button>
 
               <div class="video-right-controls">
                 <!-- Play/Pause Toggle -->
-                <button type="button" class="video-ctrl-btn" id="playToggleBtn" aria-label="Toggle Play Pause" title="Play / Pause">
+                <button type="button" class="video-ctrl-btn" id="playToggleBtn" aria-label="Toggle Play Pause"
+                  title="Play">
                   <span id="playIcon">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <rect x="6" y="4" width="4" height="16" rx="1.5"></rect>
-                      <rect x="14" y="4" width="4" height="16" rx="1.5"></rect>
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
                     </svg>
                   </span>
                 </button>
                 <!-- Fullscreen Toggle -->
-                <button type="button" class="video-ctrl-btn" id="fullscreenBtn" aria-label="Fullscreen" title="Fullscreen">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                <button type="button" class="video-ctrl-btn" id="fullscreenBtn" aria-label="Fullscreen"
+                  title="Fullscreen">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path
+                      d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+                    </path>
                   </svg>
                 </button>
               </div>
@@ -2065,8 +2399,10 @@
       <!-- Showcase Header -->
       <div class="showcase-header">
         <div class="badge badge-emerald" style="margin-bottom: 14px;">The 7 Pillars of Wealth Autonomy</div>
-        <h2 class="showcase-main-title">Crafted Like a Swiss Timepiece. <br><span class="gradient-text">Engineered for Sovereign Control.</span></h2>
-        <p class="showcase-subtitle">Scroll through the executive deck below. Each subsystem stacks seamlessly as you explore.</p>
+        <h2 class="showcase-main-title">Crafted Like a Swiss Timepiece. <br><span class="gradient-text">Engineered for
+            Sovereign Control.</span></h2>
+        <p class="showcase-subtitle">Scroll through the executive deck below. Each subsystem stacks seamlessly as you
+          explore.</p>
       </div>
 
       <!-- Top Chapter Navigation Pill Bar (Sticky just under navbar) -->
@@ -2075,7 +2411,7 @@
           <button class="deck-nav-btn active" data-index="0">01 Dashboard</button>
           <button class="deck-nav-btn" data-index="1">02 Spends</button>
           <button class="deck-nav-btn" data-index="2">03 AutoCapture</button>
-          <button class="deck-nav-btn" data-index="3">04 Khata</button>
+          <button class="deck-nav-btn" data-index="3">04 Credit Ledger</button>
           <button class="deck-nav-btn" data-index="4">05 AI Insights</button>
           <button class="deck-nav-btn" data-index="5">06 Workspaces</button>
           <button class="deck-nav-btn" data-index="6">07 Privacy</button>
@@ -2093,7 +2429,8 @@
               <div class="badge badge-emerald card-badge" style="margin-bottom: 12px;">Executive Overview</div>
               <h3 class="card-title">Total Net Worth. Decoded in a Single Breath.</h3>
               <p class="card-description">
-                Stop juggling 5 different banking apps and disjointed broker portals. CapiTrack aggregates your liquid accounts, cash balances, and monthly spend trajectory into an executive cockpit.
+                Stop juggling 5 different banking apps and disjointed broker portals. CapiTrack aggregates your liquid
+                accounts, cash balances, and monthly spend trajectory into an executive cockpit.
               </p>
 
               <ul class="feature-points">
@@ -2107,7 +2444,7 @@
                 </li>
                 <li class="feature-point-item">
                   <span class="feature-icon-bullet">✓</span>
-                  <span>Instant Settle Bar flags recurring debit reminders & pending khata dues.</span>
+                  <span>Instant Settle Bar flags recurring debit reminders & pending credit dues.</span>
                 </li>
               </ul>
 
@@ -2129,9 +2466,9 @@
 
             <div class="card-visual">
               <div class="phone-mockup">
-                <div class="phone-island"></div>
                 <div class="phone-screen">
-                  <img src="images/04-dashboard.png" alt="CapiTrack Executive Dashboard Screenshot" width="1080" height="1920">
+                  <img src="images/04-dashboard.png" alt="CapiTrack Executive Dashboard Screenshot" width="1080"
+                    height="1920">
                 </div>
               </div>
               <div class="floating-pill" style="top: 15%; right: -15px;">
@@ -2149,7 +2486,8 @@
               <div class="badge badge-cyan card-badge" style="margin-bottom: 12px;">Autonomous Stream</div>
               <h3 class="card-title">Every Single Rupee. Categorized in Real-Time.</h3>
               <p class="card-description">
-                Say goodbye to end-of-month panic wondering where your money vanished. CapiTrack organizes your outlays into high-resolution, chronologically synchronized spend streams.
+                Say goodbye to end-of-month panic wondering where your money vanished. CapiTrack organizes your outlays
+                into high-resolution, chronologically synchronized spend streams.
               </p>
 
               <ul class="feature-points">
@@ -2185,13 +2523,16 @@
 
             <div class="card-visual">
               <div class="phone-mockup">
-                <div class="phone-island"></div>
                 <div class="phone-screen">
                   <img src="images/01-spends.png" alt="CapiTrack Spends Stream Screenshot" width="1080" height="1920">
                 </div>
               </div>
               <div class="floating-pill" style="bottom: 20%; left: -15px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan); flex-shrink: 0;" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Auto-Categorized Stream
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan); flex-shrink: 0;"
+                  aria-hidden="true">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg> Auto-Categorized Stream
               </div>
             </div>
           </div>
@@ -2205,7 +2546,8 @@
               <div class="badge badge-amber card-badge" style="margin-bottom: 12px;">Intelligent Parser</div>
               <h3 class="card-title">SMS & UPI Captured Before You Lock Your Screen.</h3>
               <p class="card-description">
-                Other apps ask you to manually type ₹45 for your morning coffee. CapiTrack parses incoming transactional SMS notifications silently in the background with a zero-cloud heuristic engine.
+                Other apps ask you to manually type ₹45 for your morning coffee. CapiTrack parses incoming transactional
+                SMS notifications silently in the background with a zero-cloud heuristic engine.
               </p>
 
               <ul class="feature-points">
@@ -2241,27 +2583,32 @@
 
             <div class="card-visual">
               <div class="phone-mockup">
-                <div class="phone-island"></div>
                 <div class="phone-screen">
-                  <img src="images/02-autocapture.png" alt="CapiTrack AutoCapture Screenshot" width="1080" height="1920">
+                  <img src="images/02-autocapture.png" alt="CapiTrack AutoCapture Screenshot" width="1080"
+                    height="1920">
                 </div>
               </div>
               <div class="floating-pill" style="top: 20%; right: -15px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-amber); flex-shrink: 0;" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Zero-Cloud Heuristic Engine
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-amber); flex-shrink: 0;"
+                  aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg> Zero-Cloud Heuristic Engine
               </div>
             </div>
           </div>
         </div>
 
-        <!-- CARD 3: DIGITAL KHATA -->
+        <!-- CARD 3: DIGITAL CREDIT LEDGER -->
         <div class="sticky-card-wrapper" id="card-3" data-index="3" style="z-index: 13;">
           <div class="deck-slide theme-violet">
             <div class="card-content">
-              <span class="card-chapter-num">CHAPTER 04 · DIGITAL KHATA</span>
+              <span class="card-chapter-num">CHAPTER 04 · DIGITAL CREDIT LEDGER</span>
               <div class="badge badge-violet card-badge" style="margin-bottom: 12px;">Peer Settlements</div>
               <h3 class="card-title">Split Dues Without Ever Asking Twice.</h3>
               <p class="card-description">
-                Shared office lunches, SaaS subscriptions, and client advances tracked with mathematical precision. Generate audited WhatsApp receipts with UPI payment deep-links.
+                Shared office lunches, SaaS subscriptions, and client advances tracked with mathematical precision.
+                Generate audited WhatsApp receipts with UPI payment deep-links.
               </p>
 
               <ul class="feature-points">
@@ -2275,7 +2622,7 @@
                 </li>
                 <li class="feature-point-item">
                   <span class="feature-icon-bullet">✓</span>
-                  <span>Multi-Currency & Vendor Khata tracks business suppliers and freelance retainers.</span>
+                  <span>Multi-Currency & Vendor Credit Ledger tracks business suppliers and freelance retainers.</span>
                 </li>
               </ul>
 
@@ -2297,13 +2644,19 @@
 
             <div class="card-visual">
               <div class="phone-mockup">
-                <div class="phone-island"></div>
                 <div class="phone-screen">
-                  <img src="images/03-khata.png" alt="CapiTrack Digital Khata Screenshot" width="1080" height="1920">
+                  <img src="images/03-khata.png" alt="CapiTrack Digital Credit Ledger Screenshot" width="1080" height="1920">
                 </div>
               </div>
               <div class="floating-pill" style="bottom: 18%; left: -15px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-violet-light); flex-shrink: 0;" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg> Instant UPI Netting
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  style="color: var(--accent-violet-light); flex-shrink: 0;" aria-hidden="true">
+                  <polyline points="17 1 21 5 17 9"></polyline>
+                  <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                  <polyline points="7 23 3 19 7 15"></polyline>
+                  <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                </svg> Instant UPI Netting
               </div>
             </div>
           </div>
@@ -2317,7 +2670,8 @@
               <div class="badge badge-cyan card-badge" style="margin-bottom: 12px;">Neural Cash Flow</div>
               <h3 class="card-title">Runway Forecasting That Learns Your Burn.</h3>
               <p class="card-description">
-                Most financial charts only show what already happened. CapiTrack projects your future cash curve, predicts runway dry dates, and simulates big capital purchases before you commit.
+                Most financial charts only show what already happened. CapiTrack projects your future cash curve,
+                predicts runway dry dates, and simulates big capital purchases before you commit.
               </p>
 
               <ul class="feature-points">
@@ -2353,13 +2707,17 @@
 
             <div class="card-visual">
               <div class="phone-mockup">
-                <div class="phone-island"></div>
                 <div class="phone-screen">
                   <img src="images/05-insights.png" alt="CapiTrack AI Insights Screenshot" width="1080" height="1920">
                 </div>
               </div>
               <div class="floating-pill" style="top: 18%; right: -15px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan); flex-shrink: 0;" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> On-Device Runway Curve
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan); flex-shrink: 0;"
+                  aria-hidden="true">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg> On-Device Runway Curve
               </div>
             </div>
           </div>
@@ -2373,7 +2731,8 @@
               <div class="badge badge-rose card-badge" style="margin-bottom: 12px;">Air-Gapped Contexts</div>
               <h3 class="card-title">Founder Workspaces. Strictly Air-Gapped.</h3>
               <p class="card-description">
-                Never mix company tax filings with personal gym subscriptions. Create isolated workspaces for your startup, personal wealth, freelance LLC, or family budget in 1 tap.
+                Never mix company tax filings with personal gym subscriptions. Create isolated workspaces for your
+                startup, personal wealth, freelance LLC, or family budget in 1 tap.
               </p>
 
               <ul class="feature-points">
@@ -2409,13 +2768,18 @@
 
             <div class="card-visual">
               <div class="phone-mockup">
-                <div class="phone-island"></div>
                 <div class="phone-screen">
                   <img src="images/07-workspace.png" alt="CapiTrack Workspaces Screenshot" width="1080" height="1920">
                 </div>
               </div>
               <div class="floating-pill" style="bottom: 18%; left: -15px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-rose-light); flex-shrink: 0;" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg> Air-Gapped Workspaces
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  style="color: var(--accent-rose-light); flex-shrink: 0;" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg> Air-Gapped Workspaces
               </div>
             </div>
           </div>
@@ -2429,7 +2793,8 @@
               <div class="badge badge-obsidian card-badge" style="margin-bottom: 12px;">Local-First Vault</div>
               <h3 class="card-title">Zero Cloud. Local SQLite. Sovereign By Design.</h3>
               <p class="card-description">
-                Your financial data belongs exclusively to you. CapiTrack stores every single ledger entry in an AES-256 encrypted SQLite database right on your device hardware.
+                Your financial data belongs exclusively to you. CapiTrack stores every single ledger entry in an AES-256
+                encrypted SQLite database right on your device hardware.
               </p>
 
               <ul class="feature-points">
@@ -2465,13 +2830,18 @@
 
             <div class="card-visual">
               <div class="phone-mockup">
-                <div class="phone-island"></div>
                 <div class="phone-screen">
-                  <img src="images/08-privacy.png" alt="CapiTrack Biometric Privacy Screenshot" width="1080" height="1920">
+                  <img src="images/08-privacy.png" alt="CapiTrack Biometric Privacy Screenshot" width="1080"
+                    height="1920">
                 </div>
               </div>
               <div class="floating-pill" style="top: 25%; right: -15px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-emerald); flex-shrink: 0;" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Local-First Citadel
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-emerald); flex-shrink: 0;"
+                  aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg> Local-First Citadel
               </div>
             </div>
           </div>
@@ -2483,60 +2853,74 @@
     <!-- 4. Comparison Matrix -->
     <section id="matrix" class="matrix-section">
       <div class="container">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <div class="matrix-header" style="text-align: center; max-width: 800px; margin: 0 auto;">
           <div class="badge badge-emerald" style="margin-bottom: 16px;">
             Unfair Advantage
           </div>
           <h2>Why Serious Founders Refuse Alternatives</h2>
-          <p>A transparent breakdown of how CapiTrack stacks up against traditional banking apps and manual spreadsheets.</p>
+          <p>A transparent breakdown of how CapiTrack stacks up against traditional banking apps and manual
+            spreadsheets.</p>
+        </div>
+
+        <!-- Mobile Competitor Segmented Switcher -->
+        <div class="matrix-mobile-toggle-wrap">
+          <span class="matrix-toggle-label">Compare CapiTrack against:</span>
+          <div class="matrix-mobile-toggle" role="tablist">
+            <button type="button" class="matrix-toggle-btn active" data-competitor="bank" role="tab" aria-selected="true">
+              vs Traditional Banks
+            </button>
+            <button type="button" class="matrix-toggle-btn" data-competitor="sheets" role="tab" aria-selected="false">
+              vs Excel & Sheets
+            </button>
+          </div>
         </div>
 
         <div class="matrix-table-wrap">
-          <table class="matrix-table">
+          <table class="matrix-table" data-active-competitor="bank">
             <thead>
               <tr>
-                <th>Feature Architecture</th>
+                <th class="col-feature">Feature Architecture</th>
                 <th class="col-capitrack">CapiTrack OS</th>
-                <th>Traditional Bank Apps</th>
-                <th>Excel / Google Sheets</th>
+                <th class="col-competitor col-bank">Traditional Bank Apps</th>
+                <th class="col-competitor col-sheets">Excel / Google Sheets</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Local-First Database</strong></td>
+                <td class="col-feature"><strong>Local-First Database</strong></td>
                 <td class="col-capitrack"><span class="check-yes">✓ Encrypted Local SQLite</span></td>
-                <td><span class="check-no">✕ Stored on Cloud Server</span></td>
-                <td><span class="check-no">✕ Cloud / Google Drive</span></td>
+                <td class="col-competitor col-bank"><span class="check-no">✕ Stored on Cloud Server</span></td>
+                <td class="col-competitor col-sheets"><span class="check-no">✕ Cloud / Google Drive</span></td>
               </tr>
               <tr>
-                <td><strong>Zero-Touch SMS AutoCapture</strong></td>
+                <td class="col-feature"><strong>Zero-Touch SMS AutoCapture</strong></td>
                 <td class="col-capitrack"><span class="check-yes">✓ Instant Heuristic Parser</span></td>
-                <td><span class="check-no">✕ Only native account</span></td>
-                <td><span class="check-no">✕ 100% Manual Typing</span></td>
+                <td class="col-competitor col-bank"><span class="check-no">✕ Only native account</span></td>
+                <td class="col-competitor col-sheets"><span class="check-no">✕ 100% Manual Typing</span></td>
               </tr>
               <tr>
-                <td><strong>Zero Spam & Loan Cross-Selling</strong></td>
+                <td class="col-feature"><strong>Zero Spam & Loan Cross-Selling</strong></td>
                 <td class="col-capitrack"><span class="check-yes">✓ 0 Ads / 0 Calls Ever</span></td>
-                <td><span class="check-no">✕ Constant Loan Popups</span></td>
-                <td><span class="check-yes">✓ No Ads</span></td>
+                <td class="col-competitor col-bank"><span class="check-no">✕ Constant Loan Popups</span></td>
+                <td class="col-competitor col-sheets"><span class="check-yes">✓ No Ads</span></td>
               </tr>
               <tr>
-                <td><strong>Shared Khata & Debt Settle</strong></td>
+                <td class="col-feature"><strong>Shared Credit Ledger & Debt Settle</strong></td>
                 <td class="col-capitrack"><span class="check-yes">✓ Built-in Netting & WhatsApp</span></td>
-                <td><span class="check-no">✕ Not Available</span></td>
-                <td><span class="check-no">✕ Complex manual formulas</span></td>
+                <td class="col-competitor col-bank"><span class="check-no">✕ Not Available</span></td>
+                <td class="col-competitor col-sheets"><span class="check-no">✕ Complex manual formulas</span></td>
               </tr>
               <tr>
-                <td><strong>Multi-Workspace Partitioning</strong></td>
+                <td class="col-feature"><strong>Multi-Workspace Partitioning</strong></td>
                 <td class="col-capitrack"><span class="check-yes">✓ Unlimited isolated profiles</span></td>
-                <td><span class="check-no">✕ Single account only</span></td>
-                <td><span class="check-no">✕ Cluttered tabs</span></td>
+                <td class="col-competitor col-bank"><span class="check-no">✕ Single account only</span></td>
+                <td class="col-competitor col-sheets"><span class="check-no">✕ Cluttered tabs</span></td>
               </tr>
               <tr>
-                <td><strong>Predictive Cash Runway Curve</strong></td>
+                <td class="col-feature"><strong>Predictive Cash Runway Curve</strong></td>
                 <td class="col-capitrack"><span class="check-yes">✓ On-Device AI Forecasting</span></td>
-                <td><span class="check-no">✕ None</span></td>
-                <td><span class="check-no">✕ Requires financial degree</span></td>
+                <td class="col-competitor col-bank"><span class="check-no">✕ None</span></td>
+                <td class="col-competitor col-sheets"><span class="check-no">✕ Requires financial degree</span></td>
               </tr>
             </tbody>
           </table>
@@ -2553,7 +2937,8 @@
           </div>
           <h2>Take Sovereign Control Of Every Rupee Today.</h2>
           <p>
-            Download the latest CapiTrack Android build or join the private iOS TestFlight waitlist. Clean, local, and respectful of your privacy.
+            Download the latest CapiTrack Android build or join the private iOS TestFlight waitlist. Clean, local, and
+            respectful of your privacy.
           </p>
 
           <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
@@ -2577,7 +2962,7 @@
     <footer class="site-footer">
       <div class="container footer-container">
         <div class="footer-brand-wrap">
-          <img src="images/icon_512.png" alt="CapiTrack" class="footer-brand-icon">
+          <img src="images/icon_512.png?v=2" alt="CapiTrack" class="footer-brand-icon">
           <span class="footer-brand-name">CapiTrack</span>
           <span class="footer-copyright">© 2026 drcoretech studio. All rights reserved.</span>
         </div>
@@ -2598,6 +2983,12 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
+    // Disable Right Click across entire page
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
     // 0. Theme Toggle (Light / Dark Mode with Persistence)
     const themeToggleBtn = document.getElementById('themeToggleBtn');
 
@@ -2615,7 +3006,7 @@
       localStorage.setItem('capitrack-theme', theme);
     }
 
-    const savedTheme = localStorage.getItem('capitrack-theme') || 
+    const savedTheme = localStorage.getItem('capitrack-theme') ||
       (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     applyTheme(savedTheme);
 
@@ -2649,15 +3040,47 @@
     }
 
     function initShowcase() {
-      // 1. Hero Entrance Animations
-      gsap.from('.hero-pill', { y: 25, opacity: 0, duration: 0.7, ease: 'power3.out' });
-      gsap.from('.hero-title', { y: 35, opacity: 0, duration: 0.85, delay: 0.1, ease: 'power3.out' });
-      gsap.from('.hero-subtitle', { y: 25, opacity: 0, duration: 0.75, delay: 0.25, ease: 'power3.out' });
-      gsap.from('.hero-actions', { y: 20, opacity: 0, duration: 0.65, delay: 0.4, ease: 'power3.out' });
-      gsap.from('.hero-trust', { y: 20, opacity: 0, duration: 0.65, delay: 0.5, ease: 'power3.out' });
-      gsap.from('.hero-video-wrap', { y: 60, opacity: 0, duration: 1, delay: 0.6, ease: 'back.out(1.2)' });
+      // 1. Navigation Entrance Stagger Animation (Logo Image & Text)
+      const navTl = gsap.timeline({ defaults: { ease: 'power2.out', clearProps: 'transform' } });
+      navTl.from('.brand-logo img', { scale: 0.7, opacity: 0, duration: 0.6 })
+           .from('.brand-name', { x: -16, opacity: 0, duration: 0.5 }, '-=0.4')
+           .from('.nav-menu li a', { y: -12, opacity: 0, stagger: 0.08, duration: 0.5 }, '-=0.35')
+           .from('.theme-toggle-btn', { scale: 0.8, opacity: 0, duration: 0.4 }, '-=0.3')
+           .from('.nav-cta', { scale: 0.88, opacity: 0, duration: 0.4 }, '-=0.3');
 
-      // 2. Sticky Stacking Cards Engine
+      // 2. Hero Section Text Elements & Cinema Video Animation
+      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'transform' } });
+      heroTl.from('.hero-pill', { y: 22, opacity: 0, duration: 0.7 })
+            .from('.hero-title', { y: 35, opacity: 0, duration: 0.85 }, '-=0.5')
+            .from('.hero-subtitle', { y: 24, opacity: 0, duration: 0.75 }, '-=0.6')
+            .from('.hero-actions .btn-primary', { y: 20, opacity: 0, duration: 0.6 }, '-=0.5')
+            .from('.hero-actions .btn-secondary', { y: 20, opacity: 0, duration: 0.6 }, '-=0.45')
+            .from('.hero-trust span', { y: 15, opacity: 0, stagger: 0.08, duration: 0.55 }, '-=0.4');
+
+      const isMobile = window.innerWidth <= 640;
+      gsap.from('.hero-video-wrap', {
+        y: isMobile ? 15 : 30,
+        opacity: 0,
+        duration: 0.9,
+        delay: 0.4,
+        ease: 'power2.out',
+        clearProps: 'transform'
+      });
+
+      // 3. Showcase Section Header & Nav Buttons Stagger
+      const showcaseHeaderTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.showcase-header',
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+      showcaseHeaderTl.from('.showcase-header .badge', { scale: 0.85, opacity: 0, duration: 0.5, ease: 'power2.out' })
+                      .from('.showcase-main-title', { y: 35, opacity: 0, duration: 0.7, ease: 'power3.out' }, '-=0.25')
+                      .from('.showcase-subtitle', { y: 20, opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.35')
+                      .from('.deck-top-nav-wrap', { y: 20, opacity: 0, duration: 0.6, ease: 'power2.out', clearProps: 'all' }, '-=0.2');
+
+      // 4. Sticky Stacking Cards Engine: ANIMATING EVERY SINGLE TEXT AND IMAGE
       const cardWrappers = document.querySelectorAll('.sticky-card-wrapper');
       const navButtons = document.querySelectorAll('.deck-nav-btn');
 
@@ -2670,9 +3093,10 @@
         const bullets = slide.querySelectorAll('.feature-point-item');
         const metrics = slide.querySelectorAll('.metric-box');
         const phone = slide.querySelector('.phone-mockup');
+        const phoneImg = slide.querySelector('.phone-screen img');
         const pill = slide.querySelector('.floating-pill');
 
-        // A. Content Reveal Animations for EVERY single text & visual item
+        // Content Reveal Animations for EVERY single text & image element
         const enterTl = gsap.timeline({
           scrollTrigger: {
             trigger: wrapper,
@@ -2681,16 +3105,21 @@
           }
         });
 
-        if (chapterNum) enterTl.from(chapterNum, { x: -20, opacity: 0, duration: 0.4 }, 0);
-        if (badge) enterTl.from(badge, { scale: 0.88, opacity: 0, duration: 0.4 }, 0.05);
-        if (title) enterTl.from(title, { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out' }, 0.1);
-        if (desc) enterTl.from(desc, { y: 20, opacity: 0, duration: 0.5, ease: 'power3.out' }, 0.2);
-        if (bullets.length) enterTl.from(bullets, { x: -16, opacity: 0, stagger: 0.07, duration: 0.45 }, 0.25);
-        if (metrics.length) enterTl.from(metrics, { y: 20, scale: 0.88, opacity: 0, stagger: 0.08, duration: 0.5, ease: 'back.out(1.5)' }, 0.35);
-        if (phone) enterTl.from(phone, { y: 55, scale: 0.92, opacity: 0, duration: 0.85, ease: 'power3.out' }, 0.15);
-        if (pill) enterTl.from(pill, { scale: 0.8, opacity: 0, duration: 0.5 }, 0.35);
+        if (chapterNum) enterTl.from(chapterNum, { x: -25, opacity: 0, duration: 0.45, ease: 'power2.out', clearProps: 'transform' }, 0);
+        if (badge) enterTl.from(badge, { scale: 0.85, opacity: 0, duration: 0.45, ease: 'back.out(1.5)', clearProps: 'transform' }, 0.05);
+        if (title) enterTl.from(title, { y: 30, opacity: 0, duration: 0.65, ease: 'power3.out', clearProps: 'transform' }, 0.1);
+        if (desc) enterTl.from(desc, { y: 22, opacity: 0, duration: 0.55, ease: 'power2.out', clearProps: 'transform' }, 0.2);
+        if (bullets.length) enterTl.from(bullets, { x: -20, opacity: 0, stagger: 0.08, duration: 0.45, ease: 'power2.out', clearProps: 'transform' }, 0.25);
+        if (metrics.length) {
+          metrics.forEach((metric, mIdx) => {
+            enterTl.from(metric, { y: 20, scale: 0.9, opacity: 0, duration: 0.45, ease: 'back.out(1.4)', clearProps: 'transform' }, 0.35 + mIdx * 0.07);
+          });
+        }
+        if (phone) enterTl.from(phone, { y: 45, scale: 0.92, opacity: 0, duration: 0.8, ease: 'power3.out', clearProps: 'transform' }, 0.15);
+        if (phoneImg) enterTl.from(phoneImg, { scale: 1.08, opacity: 0, duration: 0.85, ease: 'power2.out', clearProps: 'transform' }, 0.25);
+        if (pill) enterTl.from(pill, { scale: 0.75, opacity: 0, duration: 0.55, ease: 'back.out(1.6)', clearProps: 'transform' }, 0.4);
 
-        // B. Stacking Depth: When NEXT card scrolls over THIS card, scale down, dim & blur this card
+        // Stacking Depth: When NEXT card scrolls over THIS card, scale down, dim & blur this card
         if (index < cardWrappers.length - 1) {
           const nextWrapper = cardWrappers[index + 1];
           gsap.to(slide, {
@@ -2707,7 +3136,7 @@
           });
         }
 
-        // C. Active Chapter Nav Pill Tracking on scroll
+        // Active Chapter Nav Pill Tracking on scroll
         ScrollTrigger.create({
           trigger: wrapper,
           start: 'top 45%',
@@ -2716,7 +3145,7 @@
           onEnterBack: () => setActiveNav(index)
         });
 
-        // D. Interactive Cursor Parallax: Moves phone and badge smoothly together in cursor direction
+        // Interactive Cursor Parallax
         if (phone) {
           wrapper.addEventListener('mousemove', (e) => {
             const rect = wrapper.getBoundingClientRect();
@@ -2767,21 +3196,40 @@
         }
       });
 
+      const deckNavContainer = document.querySelector('.deck-top-nav');
+
       function setActiveNav(index) {
         navButtons.forEach((btn, i) => {
-          btn.classList.toggle('active', i === index);
+          const isActive = (i === index);
+          btn.classList.toggle('active', isActive);
+          if (isActive && deckNavContainer) {
+            // Auto-center active pill button in horizontal scroll container
+            const containerRect = deckNavContainer.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+            const btnCenter = btnRect.left + (btnRect.width / 2);
+            const containerCenter = containerRect.left + (containerRect.width / 2);
+            const delta = btnCenter - containerCenter;
+
+            if (Math.abs(delta) > 4) {
+              deckNavContainer.scrollTo({
+                left: Math.max(0, deckNavContainer.scrollLeft + delta),
+                behavior: 'smooth'
+              });
+            }
+          }
         });
       }
 
-      // 3. Quick-Nav Pill Button Click Handler
+      // 5. Quick-Nav Pill Button Click Handler
       navButtons.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           const targetIndex = parseInt(btn.dataset.index, 10);
+          setActiveNav(targetIndex);
           const targetWrapper = document.getElementById('card-' + targetIndex);
           if (targetWrapper) {
             const isMobile = window.innerWidth <= 640;
-            const topOffset = isMobile ? 70 : (window.innerWidth <= 860 ? 110 : 135);
+            const topOffset = isMobile ? 120 : (window.innerWidth <= 860 ? 110 : 135);
             const elementPosition = targetWrapper.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - topOffset;
 
@@ -2793,7 +3241,7 @@
         });
       });
 
-      // 4. Smooth Anchor Scrolling for all links
+      // 6. Smooth Anchor Scrolling for all links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           const targetId = this.getAttribute('href');
@@ -2817,20 +3265,104 @@
         });
       });
 
-      // 5. Matrix Table Rows Stagger Reveal
-      gsap.from('.matrix-table tr', {
+      // 7. Matrix Section Header & Table Rows Stagger Reveal
+      const matrixHeaderTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.matrix-header',
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+      matrixHeaderTl.from('.matrix-header .badge', { scale: 0.85, opacity: 0, duration: 0.5, ease: 'power2.out' })
+                    .from('.matrix-header h2', { y: 30, opacity: 0, duration: 0.7, ease: 'power3.out' }, '-=0.25')
+                    .from('.matrix-header p', { y: 20, opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.35');
+
+      gsap.from('.matrix-table th', {
+        y: 15,
+        opacity: 0,
+        stagger: 0.06,
+        duration: 0.5,
+        ease: 'power2.out',
+        clearProps: 'all',
+        scrollTrigger: {
+          trigger: '.matrix-table-wrap',
+          start: 'top 85%'
+        }
+      });
+
+      gsap.from('.matrix-table tbody tr', {
         y: 25,
         opacity: 0,
         stagger: 0.08,
         duration: 0.6,
         ease: 'power2.out',
+        clearProps: 'all',
         scrollTrigger: {
           trigger: '.matrix-table-wrap',
           start: 'top 80%'
         }
       });
 
-      // 6. Cinema Video Player Controls
+      // 7. Matrix Mobile Competitor Toggle Handler (Head-to-Head Switcher)
+      const matrixTable = document.querySelector('.matrix-table');
+      const matrixToggleBtns = document.querySelectorAll('.matrix-toggle-btn');
+
+      if (matrixTable && matrixToggleBtns.length) {
+        matrixToggleBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const competitor = btn.dataset.competitor;
+            if (matrixTable.getAttribute('data-active-competitor') === competitor) return;
+
+            matrixToggleBtns.forEach(b => {
+              const isActive = (b === btn);
+              b.classList.toggle('active', isActive);
+              b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+            matrixTable.setAttribute('data-active-competitor', competitor);
+
+            // Subtle smooth micro-fade on competitor column switch
+            if (window.gsap) {
+              gsap.fromTo(`.matrix-table .col-${competitor}`, 
+                { opacity: 0, y: 6 }, 
+                { opacity: 1, y: 0, duration: 0.28, ease: 'power2.out', clearProps: 'all' }
+              );
+            }
+          });
+        });
+      }
+
+      // 8. CTA / Download Section Stagger Reveal
+      const ctaTl = gsap.timeline({
+        defaults: { clearProps: 'transform' },
+        scrollTrigger: {
+          trigger: '.cta-box',
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+      ctaTl.from('.cta-box', { y: 40, opacity: 0, scale: 0.97, duration: 0.8, ease: 'power3.out' })
+           .from('.cta-box .badge', { scale: 0.85, opacity: 0, duration: 0.45, ease: 'back.out(1.5)' }, '-=0.5')
+           .from('.cta-box h2', { y: 25, opacity: 0, duration: 0.65, ease: 'power3.out' }, '-=0.35')
+           .from('.cta-box p', { y: 20, opacity: 0, duration: 0.55, ease: 'power2.out' }, '-=0.35')
+           .from('.cta-box .btn-primary', { y: 18, opacity: 0, scale: 0.95, duration: 0.5, ease: 'power2.out' }, '-=0.25')
+           .from('.cta-box .btn-secondary', { y: 18, opacity: 0, scale: 0.95, duration: 0.5, ease: 'power2.out' }, '-=0.35')
+           .from('.cta-box > div:last-child', { opacity: 0, y: 12, duration: 0.5, ease: 'power2.out' }, '-=0.2');
+
+      // 9. Footer Brand Image, Name, Copyright, and Links Stagger Reveal
+      const footerTl = gsap.timeline({
+        defaults: { clearProps: 'transform' },
+        scrollTrigger: {
+          trigger: '.site-footer',
+          start: 'top 92%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+      footerTl.from('.footer-brand-icon', { scale: 0.7, opacity: 0, duration: 0.5, ease: 'back.out(1.5)' })
+              .from('.footer-brand-name', { x: -12, opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.3')
+              .from('.footer-copyright', { opacity: 0, duration: 0.5 }, '-=0.2')
+              .from('.footer-links a', { y: 12, opacity: 0, stagger: 0.07, duration: 0.45, ease: 'power2.out' }, '-=0.4');
+
+      // 10. Cinema Video Player Controls
       const heroVideo = document.getElementById('heroVideo');
       const soundBtn = document.getElementById('soundToggleBtn');
       const soundIcon = document.getElementById('soundIcon');
@@ -2841,34 +3373,48 @@
       const progressFill = document.getElementById('videoProgressFill');
 
       if (heroVideo) {
-        // Sound toggle
-        soundBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          if (heroVideo.muted) {
-            heroVideo.muted = false;
+        let userPaused = false;
+        let playbackStarted = false;
+        let userHasScrolled = false;
+
+        // Keep audio on initially
+        heroVideo.muted = false;
+        heroVideo.volume = 1.0;
+
+        function updateSoundUI(isOn) {
+          if (isOn) {
             soundIcon.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>`;
             soundText.textContent = 'Audio On';
             soundBtn.style.background = 'rgba(16, 185, 129, 0.3)';
             soundBtn.style.borderColor = 'rgba(16, 185, 129, 0.6)';
           } else {
-            heroVideo.muted = true;
             soundIcon.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
             soundText.textContent = 'Muted · Click for Audio';
             soundBtn.style.background = 'rgba(10, 13, 22, 0.88)';
             soundBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          }
+        }
+
+        // Sound toggle
+        soundBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (heroVideo.muted) {
+            heroVideo.muted = false;
+            updateSoundUI(true);
+          } else {
+            heroVideo.muted = true;
+            updateSoundUI(false);
           }
         });
 
         // Play / Pause toggle
         function togglePlay() {
           if (heroVideo.paused) {
-            heroVideo.play();
-            playIcon.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.5"></rect><rect x="14" y="4" width="4" height="16" rx="1.5"></rect></svg>`;
-            playBtn.setAttribute('title', 'Pause');
+            userPaused = false;
+            heroVideo.play().catch(() => { });
           } else {
+            userPaused = true;
             heroVideo.pause();
-            playIcon.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
-            playBtn.setAttribute('title', 'Play');
           }
         }
 
@@ -2913,12 +3459,70 @@
           }
         });
 
-        // Autoplay attempt with fallback
-        const playPromise = heroVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            heroVideo.muted = true;
-            heroVideo.play().catch(() => {});
+        // Continuous playback logic: starts on scroll into video area, keeps playing until user pauses
+        function startContinuousPlayback() {
+          if (playbackStarted || userPaused) return;
+          playbackStarted = true;
+          heroVideo.muted = false;
+          updateSoundUI(true);
+
+          const playPromise = heroVideo.play();
+          if (playPromise !== undefined) {
+            playPromise.catch((err) => {
+              console.warn('Autoplay with audio restricted by browser policy:', err);
+              // Fallback to muted playback if browser policy strictly requires click gesture for unmuted audio
+              heroVideo.muted = true;
+              updateSoundUI(false);
+              heroVideo.play().then(() => {
+                // Automatically restore audio on the very first user interaction
+                const unmuteGesture = () => {
+                  if (!userPaused) {
+                    heroVideo.muted = false;
+                    updateSoundUI(true);
+                  }
+                  window.removeEventListener('click', unmuteGesture);
+                  window.removeEventListener('touchstart', unmuteGesture);
+                  window.removeEventListener('keydown', unmuteGesture);
+                };
+                window.addEventListener('click', unmuteGesture, { once: true });
+                window.addEventListener('touchstart', unmuteGesture, { once: true });
+                window.addEventListener('keydown', unmuteGesture, { once: true });
+              }).catch(() => { });
+            });
+          }
+        }
+
+        const videoWrap = document.querySelector('.hero-video-wrap');
+
+        function checkVideoInView() {
+          if (playbackStarted || userPaused || !videoWrap) return;
+          const rect = videoWrap.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+            startContinuousPlayback();
+          }
+        }
+
+        // Start only when user scrolls in the video area
+        window.addEventListener('scroll', () => {
+          userHasScrolled = true;
+          checkVideoInView();
+        }, { passive: true });
+
+        // ScrollTrigger integration
+        if (typeof ScrollTrigger !== 'undefined' && videoWrap) {
+          ScrollTrigger.create({
+            trigger: videoWrap,
+            start: 'top 85%',
+            onEnter: () => {
+              if (userHasScrolled) {
+                startContinuousPlayback();
+              }
+            },
+            onEnterBack: () => {
+              if (userHasScrolled) {
+                startContinuousPlayback();
+              }
+            }
           });
         }
       }
@@ -2933,4 +3537,5 @@
     }
   </script>
 </body>
+
 </html>
