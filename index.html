@@ -1,0 +1,2936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CapiTrack — Autonomous Wealth & Expense Operating System</title>
+  <meta name="description" content="A luxury Apple-keynote style scrollytelling product deck for CapiTrack: The local-first, zero-knowledge financial operating system for founders, freelancers, and modern businesses.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/icon_512.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. LUXURY DESIGN SYSTEM TOKENS
+       ========================================================================== */
+    :root {
+      --bg-void: #05060a;
+      --bg-surface: #0a0d16;
+      --bg-card: #0d1220;
+      
+      --accent-emerald: #10b981;
+      --accent-emerald-light: #34d399;
+      --accent-emerald-glow: rgba(16, 185, 129, 0.35);
+      
+      --accent-cyan: #06b6d4;
+      --accent-cyan-light: #38bdf8;
+      --accent-cyan-glow: rgba(6, 182, 212, 0.35);
+      
+      --accent-violet: #8b5cf6;
+      --accent-violet-light: #c084fc;
+      
+      --accent-amber: #f59e0b;
+      --accent-amber-light: #fbbf24;
+      
+      --accent-rose: #f43f5e;
+      --accent-rose-light: #fb7185;
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(255, 255, 255, 0.18);
+      
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Space Grotesk', monospace;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-pill: 9999px;
+    }
+
+    /* Base Reset: DO NOT put overflow on html, body, or root containers to preserve position: sticky */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      width: 100%;
+      background-color: var(--bg-void);
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    ::selection {
+      background: var(--accent-emerald);
+      color: #000000;
+    }
+
+    .site-wrapper {
+      width: 100%;
+      position: relative;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-weight: 450;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Ambient Lighting Glows */
+    .ambient-glow {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.35;
+    }
+
+    .glow-top-right {
+      width: 650px;
+      height: 650px;
+      top: -200px;
+      right: -150px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(6, 182, 212, 0.15) 50%, transparent 75%);
+    }
+
+    .glow-bottom-left {
+      width: 750px;
+      height: 750px;
+      bottom: 10%;
+      left: -250px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, rgba(16, 185, 129, 0.08) 60%, transparent 80%);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+    }
+
+    .badge-emerald {
+      color: var(--accent-emerald-light);
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .badge-cyan {
+      color: var(--accent-cyan-light);
+      border-color: rgba(6, 182, 212, 0.3);
+      background: rgba(6, 182, 212, 0.1);
+    }
+
+    .badge-amber {
+      color: var(--accent-amber-light);
+      border-color: rgba(245, 158, 11, 0.3);
+      background: rgba(245, 158, 11, 0.1);
+    }
+
+    .badge-violet {
+      color: var(--accent-violet-light);
+      border-color: rgba(139, 92, 246, 0.3);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .badge-rose {
+      color: var(--accent-rose-light);
+      border-color: rgba(244, 63, 94, 0.3);
+      background: rgba(244, 63, 94, 0.1);
+    }
+
+    .badge-obsidian {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* CTA Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--accent-emerald) 0%, #059669 100%);
+      color: #000000;
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(16, 185, 129, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.02rem;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       2. TOP NAVIGATION
+       ========================================================================== */
+    .nav-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      background: rgba(5, 6, 10, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .brand-name {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+      transition: color 0.25s ease;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #ffffff;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      background: #ffffff;
+      color: #05060a;
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Nav Actions Group */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Light/Dark Mode Toggle Button */
+    .theme-toggle-btn {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-highlight);
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .theme-toggle-btn:focus {
+      outline: none;
+    }
+
+    .theme-toggle-btn:focus-visible {
+      outline: 2px solid var(--accent-emerald);
+      outline-offset: 2px;
+    }
+
+    .theme-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent-emerald);
+      box-shadow: 0 0 16px var(--accent-emerald-glow);
+      transform: scale(1.06);
+    }
+
+    .theme-svg {
+      position: absolute;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, color 0.3s ease;
+      pointer-events: none;
+    }
+
+    /* Dark Mode: Radiant gold Sun active, Moon rotated out */
+    .theme-svg-sun {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+      color: #fbbf24;
+    }
+
+    .theme-svg-moon {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.4);
+      color: #818cf8;
+    }
+
+    /* Mobile Hamburger Button */
+    .mobile-nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav-toggle .hamburger-line {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .mobile-nav-toggle.open .hamburger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-nav-toggle.open .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-nav-toggle.open .hamburger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Menu Drawer */
+    .mobile-menu-drawer {
+      display: none;
+      width: 100%;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-menu-drawer.open {
+      max-height: 340px;
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 24px 28px;
+      gap: 12px;
+    }
+
+    .mobile-nav-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      transition: color 0.2s ease, padding-left 0.2s ease;
+    }
+
+    .mobile-nav-link:hover {
+      color: var(--accent-emerald-light);
+      padding-left: 8px;
+    }
+
+    .mobile-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--accent-emerald) 0%, #059669 100%);
+      color: #000000;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      margin-top: 6px;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+    }
+
+    /* ==========================================================================
+       3. HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      position: relative;
+      padding: 165px 0 80px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .hero-pill {
+      margin-bottom: 24px;
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 6.2vw, 5.6rem);
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+      max-width: 1050px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 30%, #34d399 70%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      line-height: 1.55;
+      max-width: 740px;
+      margin: 0 auto 36px;
+      color: var(--text-secondary);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .hero-trust span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Hero Cinema Video Showcase */
+    .hero-video-wrap {
+      margin-top: 55px;
+      position: relative;
+      width: 100%;
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 28px;
+      padding: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.02) 100%);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.85), 0 0 70px rgba(16, 185, 129, 0.22);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-video-wrap:hover {
+      box-shadow: 0 45px 120px rgba(0, 0, 0, 0.9), 0 0 90px rgba(16, 185, 129, 0.32);
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #000000;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-video-player {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      cursor: pointer;
+      background: #000000;
+    }
+
+    .hero-video-player:fullscreen,
+    .hero-video-player:-webkit-full-screen,
+    .hero-video-player:-moz-full-screen,
+    .hero-video-player:-ms-fullscreen {
+      object-fit: contain !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      background: #000000 !important;
+    }
+
+    /* Video Overlay & Interactive Controls */
+    .video-overlay-controls {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: auto;
+      pointer-events: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px 20px;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 100%);
+      z-index: 10;
+      box-sizing: border-box;
+    }
+
+    .video-sound-btn {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      background: rgba(10, 13, 22, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-family: var(--font-main);
+      font-size: 0.84rem;
+      font-weight: 750;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .video-sound-btn:focus,
+    .video-ctrl-btn:focus {
+      outline: none;
+    }
+
+    .video-sound-btn:focus-visible,
+    .video-ctrl-btn:focus-visible {
+      outline: 2px solid var(--accent-emerald);
+      outline-offset: 2px;
+    }
+
+    .video-sound-btn:hover {
+      background: rgba(16, 185, 129, 0.3);
+      border-color: rgba(16, 185, 129, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+    }
+
+    .video-right-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .video-ctrl-btn {
+      pointer-events: auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(10, 13, 22, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: all 0.2s ease;
+    }
+
+    .video-ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.08);
+    }
+
+    /* Video Timeline Progress Line */
+    .video-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      z-index: 12;
+    }
+
+    .video-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-emerald) 0%, var(--accent-cyan) 100%);
+      transition: width 0.1s linear;
+    }
+
+    /* ==========================================================================
+       4. SHOWCASE STICKY CARD STACKING (LUXURY APPLE PRODUCT DECK)
+       ========================================================================== */
+    .showcase-section {
+      position: relative;
+      width: 100%;
+      background: var(--bg-void);
+      z-index: 20;
+      padding: 90px 0 160px;
+    }
+
+    .showcase-header {
+      text-align: center;
+      max-width: 880px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+
+    .showcase-main-title {
+      font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+      line-height: 1.08;
+      margin-bottom: 16px;
+    }
+
+    .showcase-main-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 40%, #34d399 75%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .showcase-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Sticky Chapter Navigation Bar pinned below header */
+    .deck-top-nav-wrap {
+      position: sticky;
+      top: 76px;
+      z-index: 99;
+      display: flex;
+      justify-content: center;
+      padding: 10px 16px;
+      margin-bottom: 36px;
+      pointer-events: none;
+    }
+
+    .deck-top-nav {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(10, 13, 22, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.75);
+      max-width: 95vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .deck-top-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .deck-nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-main);
+      font-size: 0.82rem;
+      font-weight: 750;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .deck-nav-btn:hover {
+      color: #ffffff;
+    }
+
+    .deck-nav-btn.active {
+      background: #ffffff;
+      color: #05060a;
+      box-shadow: 0 2px 14px rgba(255, 255, 255, 0.4);
+    }
+
+    /* Container for the 7 stacked cards */
+    .cards-deck-container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+    }
+
+    /* Each card wrapper is STICKY at top: 135px with ample scroll distance */
+    .sticky-card-wrapper {
+      position: sticky;
+      top: 135px;
+      margin-bottom: 260px;
+      width: 100%;
+      transform-origin: center top;
+      will-change: transform, opacity, filter;
+    }
+
+    .sticky-card-wrapper:last-child {
+      margin-bottom: 0;
+    }
+
+    /* The actual Card Element */
+    .deck-slide {
+      width: 100%;
+      min-height: 590px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.88), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 44px;
+      align-items: center;
+      padding: 44px 50px;
+      position: relative;
+      overflow: hidden;
+      transform-origin: center top;
+      transition: border-color 0.3s ease;
+    }
+
+    /* Slide Color Themes */
+    .theme-emerald {
+      background: linear-gradient(135deg, #09131a 0%, #060e14 100%);
+      border-color: rgba(16, 185, 129, 0.28);
+    }
+    .theme-emerald::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .theme-cyan {
+      background: linear-gradient(135deg, #09141f 0%, #060c14 100%);
+      border-color: rgba(6, 182, 212, 0.28);
+    }
+    .theme-cyan::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .theme-amber {
+      background: linear-gradient(135deg, #181206 0%, #0d0a04 100%);
+      border-color: rgba(245, 158, 11, 0.28);
+    }
+    .theme-amber::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .theme-violet {
+      background: linear-gradient(135deg, #130a21 0%, #0a0512 100%);
+      border-color: rgba(139, 92, 246, 0.28);
+    }
+    .theme-violet::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .theme-rose {
+      background: linear-gradient(135deg, #1b0c14 0%, #0d060a 100%);
+      border-color: rgba(244, 63, 94, 0.28);
+    }
+    .theme-rose::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(244, 63, 94, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .theme-obsidian {
+      background: linear-gradient(135deg, #0e1118 0%, #07080c 100%);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .theme-obsidian::before {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Card Content Structure */
+    .card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-chapter-num {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .card-title {
+      font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+      line-height: 1.12;
+      margin-bottom: 18px;
+      font-weight: 800;
+    }
+
+    .card-description {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      max-width: 580px;
+    }
+
+    .feature-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .feature-point-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .feature-icon-bullet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: var(--accent-emerald-light);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Metrics Strip inside each Card */
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .metric-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      transition: background 0.2s ease;
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Card Visual: Phone Mockup Frame */
+    .card-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+    }
+
+    .phone-mockup {
+      width: 250px;
+      background: #000000;
+      border-radius: 46px;
+      padding: 11px;
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.14), inset 0 0 0 3px #1f242e;
+      position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .phone-screen {
+      width: 100%;
+      border-radius: 36px;
+      overflow: hidden;
+      background: #05060a;
+      position: relative;
+    }
+
+    .phone-screen img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .phone-island {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 76px;
+      height: 18px;
+      background: #000000;
+      border-radius: 12px;
+      z-index: 10;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    /* Floating Status Pill on Mockup */
+    .floating-pill {
+      position: absolute;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      background: rgba(10, 13, 22, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8);
+      font-size: 0.85rem;
+      font-weight: 750;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
+       5. FEATURE COMPARISON MATRIX TABLE
+       ========================================================================== */
+    .matrix-section {
+      position: relative;
+      padding: 130px 0 100px;
+      z-index: 10;
+      background: linear-gradient(180deg, var(--bg-void) 0%, #070913 100%);
+    }
+
+    .matrix-section h2 {
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      margin-top: 16px;
+      margin-bottom: 20px;
+    }
+
+    .matrix-table-wrap {
+      margin-top: 60px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: rgba(13, 18, 32, 0.6);
+      backdrop-filter: blur(20px);
+      overflow-x: auto;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .matrix-table th, .matrix-table td {
+      padding: 22px 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.96rem;
+    }
+
+    .matrix-table th {
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .matrix-table th.col-capitrack, .matrix-table td.col-capitrack {
+      background: rgba(16, 185, 129, 0.06);
+      border-left: 1px solid rgba(16, 185, 129, 0.2);
+      border-right: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .matrix-table th.col-capitrack {
+      color: var(--accent-emerald-light);
+      font-size: 1rem;
+    }
+
+    .check-yes {
+      color: var(--accent-emerald-light);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .check-no {
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ==========================================================================
+       6. CTA & FOOTER
+       ========================================================================== */
+    .cta-section {
+      position: relative;
+      padding: 100px 0 130px;
+      z-index: 10;
+      text-align: center;
+    }
+
+    .cta-box {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.2) 0%, rgba(10, 13, 22, 0.9) 70%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 80px 40px;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8), 0 0 80px rgba(16, 185, 129, 0.15);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(2.3rem, 4.2vw, 3.6rem);
+      margin-bottom: 20px;
+    }
+
+    .cta-box p {
+      font-size: 1.15rem;
+      max-width: 620px;
+      margin: 0 auto 40px;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 40px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: #020305;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      vertical-align: middle;
+    }
+
+    .footer-brand-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      transition: color 0.25s ease;
+    }
+
+    .footer-copyright {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      transition: color 0.25s ease;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .site-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .site-footer a:hover {
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       7. LIGHT MODE THEME SYSTEM
+       ========================================================================== */
+    html[data-theme="light"] {
+      --bg-void: #f8fafc;
+      --bg-surface: #f1f5f9;
+      --bg-card: #ffffff;
+      
+      --accent-emerald: #059669;
+      --accent-emerald-light: #10b981;
+      --accent-emerald-glow: rgba(5, 150, 105, 0.2);
+      
+      --accent-cyan: #0891b2;
+      --accent-cyan-light: #06b6d4;
+      --accent-cyan-glow: rgba(8, 145, 178, 0.2);
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      
+      --border-subtle: rgba(15, 23, 42, 0.08);
+      --border-highlight: rgba(15, 23, 42, 0.16);
+    }
+
+    html[data-theme="light"] body {
+      background-color: var(--bg-void);
+      color: var(--text-primary);
+    }
+
+    html[data-theme="light"] .nav-header {
+      background: rgba(248, 250, 252, 0.88);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    html[data-theme="light"] .brand-name {
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .nav-link {
+      color: var(--text-secondary);
+    }
+
+    html[data-theme="light"] .nav-link:hover {
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .nav-cta {
+      background: #0f172a;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+    }
+
+    html[data-theme="light"] .theme-svg-sun {
+      opacity: 0;
+      transform: rotate(90deg) scale(0.4);
+    }
+
+    html[data-theme="light"] .theme-svg-moon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .theme-toggle-btn {
+      background: rgba(15, 23, 42, 0.05);
+      border-color: rgba(15, 23, 42, 0.14);
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .theme-toggle-btn:hover {
+      background: rgba(15, 23, 42, 0.09);
+      border-color: #059669;
+      box-shadow: 0 4px 16px rgba(5, 150, 105, 0.18);
+      transform: scale(1.06);
+    }
+
+    html[data-theme="light"] .theme-toggle-btn:focus-visible {
+      outline: 2px solid #059669;
+      outline-offset: 2px;
+    }
+
+    html[data-theme="light"] .mobile-nav-toggle {
+      background: rgba(15, 23, 42, 0.06);
+      border-color: rgba(15, 23, 42, 0.12);
+    }
+
+    html[data-theme="light"] .mobile-nav-toggle .hamburger-line {
+      background: #0f172a;
+    }
+
+    html[data-theme="light"] .mobile-menu-drawer {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    html[data-theme="light"] .mobile-nav-link {
+      color: #0f172a;
+      border-bottom-color: rgba(15, 23, 42, 0.08);
+    }
+
+    html[data-theme="light"] .hero-title .gradient-text {
+      background: linear-gradient(135deg, #0f172a 30%, #059669 70%, #0891b2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    html[data-theme="light"] .showcase-main-title .gradient-text {
+      background: linear-gradient(135deg, #0f172a 40%, #059669 75%, #0891b2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    html[data-theme="light"] .btn-secondary {
+      background: rgba(15, 23, 42, 0.05);
+      border-color: rgba(15, 23, 42, 0.15);
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .btn-secondary:hover {
+      background: rgba(15, 23, 42, 0.1);
+      border-color: rgba(15, 23, 42, 0.3);
+    }
+
+    html[data-theme="light"] .hero-video-wrap {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.08) 0%, rgba(15, 23, 42, 0.02) 100%);
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.1), 0 0 50px rgba(16, 185, 129, 0.15);
+    }
+
+    html[data-theme="light"] .deck-top-nav {
+      background: rgba(255, 255, 255, 0.94);
+      border-color: rgba(15, 23, 42, 0.12);
+      box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+    }
+
+    html[data-theme="light"] .deck-nav-btn {
+      color: var(--text-muted);
+    }
+
+    html[data-theme="light"] .deck-nav-btn:hover {
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .deck-nav-btn.active {
+      background: #0f172a;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+    }
+
+    html[data-theme="light"] .deck-slide {
+      background: #ffffff;
+      border-color: rgba(15, 23, 42, 0.09);
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    html[data-theme="light"] .theme-emerald {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    html[data-theme="light"] .theme-cyan {
+      background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 100%);
+      border-color: rgba(6, 182, 212, 0.35);
+    }
+
+    html[data-theme="light"] .theme-amber {
+      background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
+      border-color: rgba(245, 158, 11, 0.35);
+    }
+
+    html[data-theme="light"] .theme-violet {
+      background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%);
+      border-color: rgba(139, 92, 246, 0.35);
+    }
+
+    html[data-theme="light"] .theme-rose {
+      background: linear-gradient(135deg, #fff1f2 0%, #ffffff 100%);
+      border-color: rgba(244, 63, 94, 0.35);
+    }
+
+    html[data-theme="light"] .theme-obsidian {
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      border-color: rgba(15, 23, 42, 0.16);
+    }
+
+    html[data-theme="light"] .metric-box {
+      background: rgba(15, 23, 42, 0.03);
+      border-color: rgba(15, 23, 42, 0.08);
+    }
+
+    html[data-theme="light"] .metric-value {
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .floating-pill {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: rgba(15, 23, 42, 0.14);
+      color: #0f172a;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    }
+
+    html[data-theme="light"] .matrix-section {
+      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+
+    html[data-theme="light"] .matrix-table-wrap {
+      background: #ffffff;
+      border-color: rgba(15, 23, 42, 0.1);
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.06);
+    }
+
+    html[data-theme="light"] .matrix-table th {
+      background: #f8fafc;
+      color: #64748b;
+    }
+
+    html[data-theme="light"] .matrix-table th, 
+    html[data-theme="light"] .matrix-table td {
+      border-bottom-color: rgba(15, 23, 42, 0.08);
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .matrix-table td strong {
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .matrix-table th.col-capitrack,
+    html[data-theme="light"] .matrix-table td.col-capitrack {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 1px solid rgba(16, 185, 129, 0.25);
+      border-right: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    html[data-theme="light"] .cta-box {
+      background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15) 0%, rgba(255, 255, 255, 0.96) 70%);
+      border-color: rgba(16, 185, 129, 0.35);
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.08);
+    }
+
+    html[data-theme="light"] .site-footer {
+      background: #f1f5f9;
+      border-top-color: rgba(15, 23, 42, 0.08);
+      color: #64748b;
+    }
+
+    html[data-theme="light"] .footer-brand-name {
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .footer-copyright {
+      color: #475569;
+    }
+
+    html[data-theme="light"] .site-footer a {
+      color: #475569;
+    }
+
+    html[data-theme="light"] .site-footer a:hover {
+      color: #059669;
+    }
+
+    html[data-theme="light"] .badge-obsidian {
+      color: #0f172a;
+      border-color: rgba(15, 23, 42, 0.15);
+      background: rgba(15, 23, 42, 0.06);
+    }
+
+    html[data-theme="light"] .ambient-glow {
+      opacity: 0.15;
+    }
+
+    /* ==========================================================================
+       8. RESPONSIVE DESIGN BREAKPOINTS (MOBILE & TABLET OPTIMIZATIONS)
+       ========================================================================== */
+    /* Breakpoint 1: Tablets Landscape / Small Laptops */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 20px;
+      }
+      .deck-slide {
+        padding: 36px 32px;
+        gap: 28px;
+      }
+      .card-title {
+        font-size: 2.1rem;
+      }
+      .phone-mockup {
+        width: 220px;
+      }
+      .matrix-table th, .matrix-table td {
+        padding: 16px 20px;
+      }
+    }
+
+    /* Breakpoint 2: Tablets Portrait */
+    @media (max-width: 860px) {
+      .nav-menu {
+        display: none;
+      }
+      .mobile-nav-toggle {
+        display: flex;
+      }
+      .mobile-menu-drawer {
+        display: block;
+      }
+      .hero-section {
+        padding: 130px 0 50px;
+      }
+      .hero-title {
+        font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+      }
+      .hero-video-wrap {
+        margin-top: 36px;
+      }
+      .video-overlay-controls {
+        padding: 12px 18px 16px;
+      }
+      .video-sound-btn {
+        padding: 7px 14px;
+        font-size: 0.78rem;
+      }
+      .video-ctrl-btn {
+        width: 38px;
+        height: 38px;
+      }
+
+      /* Sticky Stacking Cards on Tablet */
+      .showcase-section {
+        padding: 60px 0 120px;
+      }
+      .deck-top-nav-wrap {
+        top: 70px;
+        margin-bottom: 24px;
+      }
+      .sticky-card-wrapper {
+        top: 110px;
+        margin-bottom: 180px;
+      }
+      .deck-slide {
+        grid-template-columns: 1fr;
+        padding: 32px 28px;
+        min-height: auto;
+        gap: 24px;
+      }
+      .card-visual {
+        order: -1;
+        justify-content: center;
+      }
+      .phone-mockup {
+        width: 190px;
+      }
+      .floating-pill {
+        font-size: 0.78rem;
+        padding: 7px 14px;
+      }
+    }
+
+    /* Breakpoint 3: Mobile Phones */
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+      .brand-name {
+        font-size: 1.15rem;
+      }
+      .brand-logo img {
+        width: 30px;
+        height: 30px;
+      }
+      .nav-cta {
+        display: none; /* Accessible in mobile dropdown */
+      }
+      .nav-actions {
+        gap: 8px;
+      }
+
+      /* Hero Section on Mobile */
+      .hero-section {
+        padding: 100px 0 35px;
+      }
+      .hero-pill {
+        font-size: 0.72rem;
+        padding: 5px 12px;
+        margin-bottom: 16px;
+      }
+      .hero-title {
+        font-size: 2rem;
+        line-height: 1.08;
+        margin-bottom: 16px;
+      }
+      .hero-subtitle {
+        font-size: 0.92rem;
+        line-height: 1.5;
+        margin-bottom: 24px;
+        padding: 0 4px;
+      }
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 22px;
+        font-size: 0.95rem;
+      }
+      .hero-trust {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.8rem;
+      }
+
+      /* Hero Video on Mobile */
+      .hero-video-wrap {
+        margin-top: 24px;
+        border-radius: 18px;
+        padding: 4px;
+      }
+      .video-container {
+        border-radius: 14px;
+      }
+      .video-overlay-controls {
+        padding: 8px 12px 12px;
+      }
+      .video-sound-btn {
+        padding: 6px 12px;
+        font-size: 0.72rem;
+        gap: 6px;
+      }
+      .video-sound-btn .sound-text {
+        font-size: 0.72rem;
+      }
+      .video-right-controls {
+        gap: 6px;
+      }
+      .video-ctrl-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 0.85rem;
+      }
+
+      /* Showcase Section on Mobile */
+      .showcase-section {
+        padding: 40px 0 80px;
+      }
+      .showcase-header {
+        margin-bottom: 20px;
+        padding: 0 10px;
+      }
+      .showcase-main-title {
+        font-size: 1.75rem;
+        line-height: 1.12;
+      }
+      .showcase-subtitle {
+        font-size: 0.9rem;
+      }
+
+      /* Sticky Chapter Nav on Mobile */
+      .deck-top-nav-wrap {
+        top: 60px;
+        padding: 4px 10px;
+        margin-bottom: 16px;
+      }
+      .deck-top-nav {
+        padding: 4px 6px;
+        gap: 4px;
+      }
+      .deck-nav-btn {
+        padding: 5px 10px;
+        font-size: 0.72rem;
+      }
+
+      /* Sticky Card on Mobile */
+      .cards-deck-container {
+        padding: 0 10px;
+      }
+      .sticky-card-wrapper {
+        top: 70px;
+        margin-bottom: 110px;
+      }
+      .deck-slide {
+        padding: 20px 16px 18px;
+        border-radius: 20px;
+        gap: 16px;
+      }
+      .card-chapter-num {
+        font-size: 0.72rem;
+        margin-bottom: 8px;
+      }
+      .card-title {
+        font-size: 1.35rem;
+        line-height: 1.15;
+        margin-bottom: 10px;
+      }
+      .card-description {
+        font-size: 0.86rem;
+        line-height: 1.45;
+        margin-bottom: 14px;
+      }
+      .feature-points {
+        display: none;
+      }
+      .card-visual {
+        order: -1;
+        margin: 0 auto;
+      }
+      .phone-mockup {
+        width: 140px;
+        padding: 7px;
+        border-radius: 28px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+      }
+      .phone-screen {
+        border-radius: 20px;
+        max-height: 200px;
+      }
+      .phone-island {
+        width: 48px;
+        height: 12px;
+        top: 10px;
+      }
+      .floating-pill {
+        display: none;
+      }
+      .metrics-strip {
+        gap: 8px;
+        padding-top: 14px;
+      }
+      .metric-box {
+        padding: 8px 6px;
+        text-align: center;
+      }
+      .metric-value {
+        font-size: 0.95rem;
+      }
+      .metric-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.02em;
+      }
+
+      /* Comparison Matrix on Mobile */
+      .matrix-section {
+        padding: 60px 0 50px;
+      }
+      .matrix-section h2 {
+        font-size: 1.8rem;
+      }
+      .matrix-section p {
+        font-size: 0.9rem;
+      }
+      .matrix-table-wrap {
+        margin-top: 30px;
+        border-radius: 16px;
+      }
+      .matrix-table th, .matrix-table td {
+        padding: 12px 14px;
+        font-size: 0.8rem;
+      }
+
+      /* CTA Box on Mobile */
+      .cta-section {
+        padding: 60px 0 80px;
+      }
+      .cta-box {
+        padding: 36px 18px;
+        border-radius: 20px;
+      }
+      .cta-box h2 {
+        font-size: 1.7rem;
+      }
+      .cta-box p {
+        font-size: 0.92rem;
+        margin-bottom: 24px;
+      }
+      .cta-box .btn-primary, 
+      .cta-box .btn-secondary {
+        width: 100%;
+        padding: 15px 24px;
+        font-size: 1rem;
+      }
+
+      /* Footer on Mobile */
+      .site-footer {
+        padding: 30px 0;
+      }
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+      }
+      .footer-brand-wrap {
+        justify-content: center;
+      }
+      .footer-links {
+        justify-content: center;
+        gap: 18px;
+      }
+      .site-footer a {
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Breakpoint 4: Ultra Compact Screens */
+    @media (max-width: 380px) {
+      .hero-title {
+        font-size: 1.75rem;
+      }
+      .video-overlay-controls {
+        padding: 6px 8px 10px;
+      }
+      .video-sound-btn {
+        padding: 5px 8px;
+        font-size: 0.66rem;
+      }
+      .video-sound-btn .sound-text {
+        font-size: 0.66rem;
+      }
+      .video-right-controls {
+        gap: 5px;
+      }
+      .video-ctrl-btn {
+        width: 30px;
+        height: 30px;
+      }
+      .phone-mockup {
+        width: 120px;
+      }
+      .card-title {
+        font-size: 1.2rem;
+      }
+      .metrics-strip {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .metric-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-wrapper">
+
+    <!-- Ambient Glow Backgrounds -->
+    <div class="ambient-glow glow-top-right"></div>
+    <div class="ambient-glow glow-bottom-left"></div>
+
+    <!-- 1. Top Navigation Bar -->
+    <header class="nav-header">
+      <div class="container nav-inner">
+        <a href="#" class="brand-logo">
+          <img src="images/icon_512.png" alt="CapiTrack Icon" width="36" height="36">
+          <span class="brand-name">CapiTrack</span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="#showcase" class="nav-link">Deck Showcase</a></li>
+          <li><a href="#matrix" class="nav-link">Comparison</a></li>
+          <li><a href="#download" class="nav-link">Get Early Access</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <!-- Light / Dark Mode Toggle Button -->
+          <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light and Dark Mode" title="Toggle Light/Dark Theme">
+            <!-- Sun Icon (visible in dark mode) -->
+            <svg class="theme-svg theme-svg-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.5"></circle>
+              <line x1="12" y1="2" x2="12" y2="4.5"></line>
+              <line x1="12" y1="19.5" x2="12" y2="22"></line>
+              <line x1="4.22" y1="4.22" x2="5.99" y2="5.99"></line>
+              <line x1="18.01" y1="18.01" x2="19.78" y2="19.78"></line>
+              <line x1="2" y1="12" x2="4.5" y2="12"></line>
+              <line x1="19.5" y1="12" x2="22" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.99" y2="18.01"></line>
+              <line x1="18.01" y1="5.99" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- Moon Icon (visible in light mode) -->
+            <svg class="theme-svg theme-svg-moon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+
+          <a href="#download" class="nav-cta">
+            <span>Download APK</span>
+            <span>&darr;</span>
+          </a>
+
+          <!-- Mobile Hamburger Toggle Button -->
+          <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation Drawer -->
+      <div class="mobile-menu-drawer" id="mobileDrawer">
+        <div class="mobile-menu-links">
+          <a href="#showcase" class="mobile-nav-link">Deck Showcase</a>
+          <a href="#matrix" class="mobile-nav-link">Comparison Matrix</a>
+          <a href="#download" class="mobile-nav-link">Get Early Access</a>
+          <a href="#download" class="mobile-cta-btn">
+            <span>Download APK</span>
+            <span>&darr;</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="badge badge-emerald hero-pill">
+          <span>✦</span> Local-First Financial Operating System
+        </div>
+
+        <h1 class="hero-title">
+          The Wealth OS Built For Founders <br>
+          <span class="gradient-text">Who Refuse To Fly Blind.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Zero manual typing. Zero cloud data harvesting. CapiTrack captures transactions in real-time, models your cash burn, and reconciles shared khatas with pristine clarity.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#showcase" class="btn-primary">
+            <span>Scroll To Explore Deck</span>
+            <span>&darr;</span>
+          </a>
+          <a href="#download" class="btn-secondary">
+            <span>Get on Google Play</span>
+          </a>
+        </div>
+
+        <div class="hero-trust">
+          <span><span style="color: var(--accent-emerald);">✓</span> 100% Local SQLite Vault</span>
+          <span><span style="color: var(--accent-cyan);">✓</span> On-Device AI Heuristics</span>
+          <span><span style="color: var(--accent-amber);">✓</span> Zero Telemetry / No Ads</span>
+        </div>
+
+        <!-- Hero Cinema Video Showcase -->
+        <div class="hero-video-wrap">
+          <div class="video-container">
+            <video
+              id="heroVideo"
+              class="hero-video-player"
+              playsinline
+              autoplay
+              muted
+              loop
+              preload="auto"
+              poster="images/feature_graphic.png"
+              width="1920"
+              height="1080"
+            >
+              <source src="images/CapiTrack_30s_landscape_16x9_v3.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+
+            <!-- Video Overlay & Interactive Controls -->
+            <div class="video-overlay-controls">
+              <!-- Sound Toggle Button -->
+              <button type="button" class="video-sound-btn" id="soundToggleBtn" aria-label="Toggle Sound">
+                <span class="sound-icon" id="soundIcon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                  </svg>
+                </span>
+                <span class="sound-text" id="soundText">Muted · Click for Audio</span>
+              </button>
+
+              <div class="video-right-controls">
+                <!-- Play/Pause Toggle -->
+                <button type="button" class="video-ctrl-btn" id="playToggleBtn" aria-label="Toggle Play Pause" title="Play / Pause">
+                  <span id="playIcon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <rect x="6" y="4" width="4" height="16" rx="1.5"></rect>
+                      <rect x="14" y="4" width="4" height="16" rx="1.5"></rect>
+                    </svg>
+                  </span>
+                </button>
+                <!-- Fullscreen Toggle -->
+                <button type="button" class="video-ctrl-btn" id="fullscreenBtn" aria-label="Fullscreen" title="Fullscreen">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Video Timeline Progress Line -->
+            <div class="video-progress-bar">
+              <div class="video-progress-fill" id="videoProgressFill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. STICKY CARD STACKING SCROLLYTELLING CONTAINER -->
+    <section id="showcase" class="showcase-section">
+
+      <!-- Showcase Header -->
+      <div class="showcase-header">
+        <div class="badge badge-emerald" style="margin-bottom: 14px;">The 7 Pillars of Wealth Autonomy</div>
+        <h2 class="showcase-main-title">Crafted Like a Swiss Timepiece. <br><span class="gradient-text">Engineered for Sovereign Control.</span></h2>
+        <p class="showcase-subtitle">Scroll through the executive deck below. Each subsystem stacks seamlessly as you explore.</p>
+      </div>
+
+      <!-- Top Chapter Navigation Pill Bar (Sticky just under navbar) -->
+      <div class="deck-top-nav-wrap">
+        <div class="deck-top-nav">
+          <button class="deck-nav-btn active" data-index="0">01 Dashboard</button>
+          <button class="deck-nav-btn" data-index="1">02 Spends</button>
+          <button class="deck-nav-btn" data-index="2">03 AutoCapture</button>
+          <button class="deck-nav-btn" data-index="3">04 Khata</button>
+          <button class="deck-nav-btn" data-index="4">05 AI Insights</button>
+          <button class="deck-nav-btn" data-index="5">06 Workspaces</button>
+          <button class="deck-nav-btn" data-index="6">07 Privacy</button>
+        </div>
+      </div>
+
+      <!-- Cards Deck Container (Holds all 7 cards that naturally stack with position: sticky) -->
+      <div class="cards-deck-container">
+
+        <!-- CARD 0: DASHBOARD & NET WORTH -->
+        <div class="sticky-card-wrapper" id="card-0" data-index="0" style="z-index: 10;">
+          <div class="deck-slide theme-emerald">
+            <div class="card-content">
+              <span class="card-chapter-num">CHAPTER 01 · COMMAND COCKPIT</span>
+              <div class="badge badge-emerald card-badge" style="margin-bottom: 12px;">Executive Overview</div>
+              <h3 class="card-title">Total Net Worth. Decoded in a Single Breath.</h3>
+              <p class="card-description">
+                Stop juggling 5 different banking apps and disjointed broker portals. CapiTrack aggregates your liquid accounts, cash balances, and monthly spend trajectory into an executive cockpit.
+              </p>
+
+              <ul class="feature-points">
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Unified Liquid Balance across all banks, wallets, and cash reserves.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Live Cash Burn Velocity Gauge calculates exact monthly pacing.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Instant Settle Bar flags recurring debit reminders & pending khata dues.</span>
+                </li>
+              </ul>
+
+              <div class="metrics-strip">
+                <div class="metric-box">
+                  <div class="metric-value">₹0</div>
+                  <div class="metric-label">Cloud Leakage</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">&lt; 10ms</div>
+                  <div class="metric-label">Query Time</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">100%</div>
+                  <div class="metric-label">Offline Ready</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-visual">
+              <div class="phone-mockup">
+                <div class="phone-island"></div>
+                <div class="phone-screen">
+                  <img src="images/04-dashboard.png" alt="CapiTrack Executive Dashboard Screenshot" width="1080" height="1920">
+                </div>
+              </div>
+              <div class="floating-pill" style="top: 15%; right: -15px;">
+                <span style="color: var(--accent-emerald);">●</span> Live Net Worth Cockpit
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 1: SPENDS STREAM -->
+        <div class="sticky-card-wrapper" id="card-1" data-index="1" style="z-index: 11;">
+          <div class="deck-slide theme-cyan">
+            <div class="card-content">
+              <span class="card-chapter-num">CHAPTER 02 · REAL-TIME SPENDS</span>
+              <div class="badge badge-cyan card-badge" style="margin-bottom: 12px;">Autonomous Stream</div>
+              <h3 class="card-title">Every Single Rupee. Categorized in Real-Time.</h3>
+              <p class="card-description">
+                Say goodbye to end-of-month panic wondering where your money vanished. CapiTrack organizes your outlays into high-resolution, chronologically synchronized spend streams.
+              </p>
+
+              <ul class="feature-points">
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Neural Merchant Normalization cleans up cryptic bank strings automatically.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>One-Tap Split & Settle tags transactions with co-founders or roommates.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Custom Tax & GST Flags mark write-offs for effortless year-end deduction.</span>
+                </li>
+              </ul>
+
+              <div class="metrics-strip">
+                <div class="metric-box">
+                  <div class="metric-value">50+</div>
+                  <div class="metric-label">Categories</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">0</div>
+                  <div class="metric-label">Manual Inputs</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">1 Tap</div>
+                  <div class="metric-label">Receipt Attach</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-visual">
+              <div class="phone-mockup">
+                <div class="phone-island"></div>
+                <div class="phone-screen">
+                  <img src="images/01-spends.png" alt="CapiTrack Spends Stream Screenshot" width="1080" height="1920">
+                </div>
+              </div>
+              <div class="floating-pill" style="bottom: 20%; left: -15px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan); flex-shrink: 0;" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Auto-Categorized Stream
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: AUTOCAPTURE -->
+        <div class="sticky-card-wrapper" id="card-2" data-index="2" style="z-index: 12;">
+          <div class="deck-slide theme-amber">
+            <div class="card-content">
+              <span class="card-chapter-num">CHAPTER 03 · BACKGROUND AUTOPILOT</span>
+              <div class="badge badge-amber card-badge" style="margin-bottom: 12px;">Intelligent Parser</div>
+              <h3 class="card-title">SMS & UPI Captured Before You Lock Your Screen.</h3>
+              <p class="card-description">
+                Other apps ask you to manually type ₹45 for your morning coffee. CapiTrack parses incoming transactional SMS notifications silently in the background with a zero-cloud heuristic engine.
+              </p>
+
+              <ul class="feature-points">
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Autonomous Heuristic Parser works offline with all major banks & UPI apps.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Zero Private SMS Access strictly ignores personal chats and OTP codes.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Instant Undo & Re-tag from notification shade without unlocking app.</span>
+                </li>
+              </ul>
+
+              <div class="metrics-strip">
+                <div class="metric-box">
+                  <div class="metric-value">99.4%</div>
+                  <div class="metric-label">Parsing Accuracy</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">0%</div>
+                  <div class="metric-label">Battery Drain</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">100%</div>
+                  <div class="metric-label">On-Device Engine</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-visual">
+              <div class="phone-mockup">
+                <div class="phone-island"></div>
+                <div class="phone-screen">
+                  <img src="images/02-autocapture.png" alt="CapiTrack AutoCapture Screenshot" width="1080" height="1920">
+                </div>
+              </div>
+              <div class="floating-pill" style="top: 20%; right: -15px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-amber); flex-shrink: 0;" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Zero-Cloud Heuristic Engine
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: DIGITAL KHATA -->
+        <div class="sticky-card-wrapper" id="card-3" data-index="3" style="z-index: 13;">
+          <div class="deck-slide theme-violet">
+            <div class="card-content">
+              <span class="card-chapter-num">CHAPTER 04 · DIGITAL KHATA</span>
+              <div class="badge badge-violet card-badge" style="margin-bottom: 12px;">Peer Settlements</div>
+              <h3 class="card-title">Split Dues Without Ever Asking Twice.</h3>
+              <p class="card-description">
+                Shared office lunches, SaaS subscriptions, and client advances tracked with mathematical precision. Generate audited WhatsApp receipts with UPI payment deep-links.
+              </p>
+
+              <ul class="feature-points">
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Real-Time Ledger Netting cancels out mutual debts automatically.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>WhatsApp Settlement Receipts with clickable dynamic UPI payment links.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Multi-Currency & Vendor Khata tracks business suppliers and freelance retainers.</span>
+                </li>
+              </ul>
+
+              <div class="metrics-strip">
+                <div class="metric-box">
+                  <div class="metric-value">0</div>
+                  <div class="metric-label">Awkward Followups</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">1-Click</div>
+                  <div class="metric-label">WhatsApp Settle</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">Exact</div>
+                  <div class="metric-label">Net Debt Math</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-visual">
+              <div class="phone-mockup">
+                <div class="phone-island"></div>
+                <div class="phone-screen">
+                  <img src="images/03-khata.png" alt="CapiTrack Digital Khata Screenshot" width="1080" height="1920">
+                </div>
+              </div>
+              <div class="floating-pill" style="bottom: 18%; left: -15px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-violet-light); flex-shrink: 0;" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg> Instant UPI Netting
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: PREDICTIVE INSIGHTS -->
+        <div class="sticky-card-wrapper" id="card-4" data-index="4" style="z-index: 14;">
+          <div class="deck-slide theme-cyan">
+            <div class="card-content">
+              <span class="card-chapter-num">CHAPTER 05 · PREDICTIVE FORECASTING</span>
+              <div class="badge badge-cyan card-badge" style="margin-bottom: 12px;">Neural Cash Flow</div>
+              <h3 class="card-title">Runway Forecasting That Learns Your Burn.</h3>
+              <p class="card-description">
+                Most financial charts only show what already happened. CapiTrack projects your future cash curve, predicts runway dry dates, and simulates big capital purchases before you commit.
+              </p>
+
+              <ul class="feature-points">
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Dynamic Runway Days counter models recurring fixed vs variable expenses.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Simulate Big Ticket Purchases to view instant impact on next 90 days.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Subscription Leakage Radar detects sneaky price hikes and forgotten SaaS tiers.</span>
+                </li>
+              </ul>
+
+              <div class="metrics-strip">
+                <div class="metric-box">
+                  <div class="metric-value">90 Days</div>
+                  <div class="metric-label">Runway Forecast</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">3x Earlier</div>
+                  <div class="metric-label">Anomaly Catch</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">0 Cloud</div>
+                  <div class="metric-label">AI API Calls</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-visual">
+              <div class="phone-mockup">
+                <div class="phone-island"></div>
+                <div class="phone-screen">
+                  <img src="images/05-insights.png" alt="CapiTrack AI Insights Screenshot" width="1080" height="1920">
+                </div>
+              </div>
+              <div class="floating-pill" style="top: 18%; right: -15px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-cyan); flex-shrink: 0;" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> On-Device Runway Curve
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 5: WORKSPACES -->
+        <div class="sticky-card-wrapper" id="card-5" data-index="5" style="z-index: 15;">
+          <div class="deck-slide theme-rose">
+            <div class="card-content">
+              <span class="card-chapter-num">CHAPTER 06 · MULTI-WORKSPACE</span>
+              <div class="badge badge-rose card-badge" style="margin-bottom: 12px;">Air-Gapped Contexts</div>
+              <h3 class="card-title">Founder Workspaces. Strictly Air-Gapped.</h3>
+              <p class="card-description">
+                Never mix company tax filings with personal gym subscriptions. Create isolated workspaces for your startup, personal wealth, freelance LLC, or family budget in 1 tap.
+              </p>
+
+              <ul class="feature-points">
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Instant Profile Switcher toggles between Startup and Personal in 200ms.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Distinct Export Bundles generate sanitized CSV/PDF statements per workspace.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Independent Budget Caps prevent runaway operational burn across entities.</span>
+                </li>
+              </ul>
+
+              <div class="metrics-strip">
+                <div class="metric-box">
+                  <div class="metric-value">Unlimited</div>
+                  <div class="metric-label">Profiles</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">Air-Gapped</div>
+                  <div class="metric-label">Ledgers</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">1-Tap</div>
+                  <div class="metric-label">Profile Swap</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-visual">
+              <div class="phone-mockup">
+                <div class="phone-island"></div>
+                <div class="phone-screen">
+                  <img src="images/07-workspace.png" alt="CapiTrack Workspaces Screenshot" width="1080" height="1920">
+                </div>
+              </div>
+              <div class="floating-pill" style="bottom: 18%; left: -15px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-rose-light); flex-shrink: 0;" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg> Air-Gapped Workspaces
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 6: SOVEREIGN PRIVACY -->
+        <div class="sticky-card-wrapper" id="card-6" data-index="6" style="z-index: 16;">
+          <div class="deck-slide theme-obsidian">
+            <div class="card-content">
+              <span class="card-chapter-num">CHAPTER 07 · SOVEREIGN ARCHITECTURE</span>
+              <div class="badge badge-obsidian card-badge" style="margin-bottom: 12px;">Local-First Vault</div>
+              <h3 class="card-title">Zero Cloud. Local SQLite. Sovereign By Design.</h3>
+              <p class="card-description">
+                Your financial data belongs exclusively to you. CapiTrack stores every single ledger entry in an AES-256 encrypted SQLite database right on your device hardware.
+              </p>
+
+              <ul class="feature-points">
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Biometric Hardware Lock gates app with Fingerprint and Face Unlock.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Encrypted File Backups let you sync via your own Google Drive or USB key.</span>
+                </li>
+                <li class="feature-point-item">
+                  <span class="feature-icon-bullet">✓</span>
+                  <span>Zero Ad Tracking & Zero Analytics means no third-party telemetry ever runs.</span>
+                </li>
+              </ul>
+
+              <div class="metrics-strip">
+                <div class="metric-box">
+                  <div class="metric-value">AES-256</div>
+                  <div class="metric-label">Local Encryption</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">0 Bytes</div>
+                  <div class="metric-label">Cloud Upload</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-value">100%</div>
+                  <div class="metric-label">Privacy Sovereign</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-visual">
+              <div class="phone-mockup">
+                <div class="phone-island"></div>
+                <div class="phone-screen">
+                  <img src="images/08-privacy.png" alt="CapiTrack Biometric Privacy Screenshot" width="1080" height="1920">
+                </div>
+              </div>
+              <div class="floating-pill" style="top: 25%; right: -15px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-emerald); flex-shrink: 0;" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Local-First Citadel
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. Comparison Matrix -->
+    <section id="matrix" class="matrix-section">
+      <div class="container">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+          <div class="badge badge-emerald" style="margin-bottom: 16px;">
+            Unfair Advantage
+          </div>
+          <h2>Why Serious Founders Refuse Alternatives</h2>
+          <p>A transparent breakdown of how CapiTrack stacks up against traditional banking apps and manual spreadsheets.</p>
+        </div>
+
+        <div class="matrix-table-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Feature Architecture</th>
+                <th class="col-capitrack">CapiTrack OS</th>
+                <th>Traditional Bank Apps</th>
+                <th>Excel / Google Sheets</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Local-First Database</strong></td>
+                <td class="col-capitrack"><span class="check-yes">✓ Encrypted Local SQLite</span></td>
+                <td><span class="check-no">✕ Stored on Cloud Server</span></td>
+                <td><span class="check-no">✕ Cloud / Google Drive</span></td>
+              </tr>
+              <tr>
+                <td><strong>Zero-Touch SMS AutoCapture</strong></td>
+                <td class="col-capitrack"><span class="check-yes">✓ Instant Heuristic Parser</span></td>
+                <td><span class="check-no">✕ Only native account</span></td>
+                <td><span class="check-no">✕ 100% Manual Typing</span></td>
+              </tr>
+              <tr>
+                <td><strong>Zero Spam & Loan Cross-Selling</strong></td>
+                <td class="col-capitrack"><span class="check-yes">✓ 0 Ads / 0 Calls Ever</span></td>
+                <td><span class="check-no">✕ Constant Loan Popups</span></td>
+                <td><span class="check-yes">✓ No Ads</span></td>
+              </tr>
+              <tr>
+                <td><strong>Shared Khata & Debt Settle</strong></td>
+                <td class="col-capitrack"><span class="check-yes">✓ Built-in Netting & WhatsApp</span></td>
+                <td><span class="check-no">✕ Not Available</span></td>
+                <td><span class="check-no">✕ Complex manual formulas</span></td>
+              </tr>
+              <tr>
+                <td><strong>Multi-Workspace Partitioning</strong></td>
+                <td class="col-capitrack"><span class="check-yes">✓ Unlimited isolated profiles</span></td>
+                <td><span class="check-no">✕ Single account only</span></td>
+                <td><span class="check-no">✕ Cluttered tabs</span></td>
+              </tr>
+              <tr>
+                <td><strong>Predictive Cash Runway Curve</strong></td>
+                <td class="col-capitrack"><span class="check-yes">✓ On-Device AI Forecasting</span></td>
+                <td><span class="check-no">✕ None</span></td>
+                <td><span class="check-no">✕ Requires financial degree</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Final CTA -->
+    <section id="download" class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <div class="badge badge-emerald" style="margin-bottom: 20px;">
+            Available Now · Free Early Founder Tier
+          </div>
+          <h2>Take Sovereign Control Of Every Rupee Today.</h2>
+          <p>
+            Download the latest CapiTrack Android build or join the private iOS TestFlight waitlist. Clean, local, and respectful of your privacy.
+          </p>
+
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="#" class="btn-primary" style="font-size: 1.12rem; padding: 18px 44px;">
+              <span>Download for Android (APK)</span>
+              <span>&darr;</span>
+            </a>
+            <a href="#" class="btn-secondary" style="font-size: 1.12rem; padding: 18px 44px;">
+              <span>Request iOS TestFlight</span>
+            </a>
+          </div>
+
+          <div style="margin-top: 36px; color: var(--text-muted); font-size: 0.88rem;">
+            Verified clean SHA-256 build · Requires Android 9.0+ · Zero root permissions needed
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Footer -->
+    <footer class="site-footer">
+      <div class="container footer-container">
+        <div class="footer-brand-wrap">
+          <img src="images/icon_512.png" alt="CapiTrack" class="footer-brand-icon">
+          <span class="footer-brand-name">CapiTrack</span>
+          <span class="footer-copyright">© 2026 drcoretech studio. All rights reserved.</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="#showcase">Showcase</a>
+          <a href="#matrix">Comparison</a>
+          <a href="https://drcoretech.com" target="_blank" rel="noopener">drcoretech.com</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==========================================================================
+       7. GSAP SCROLLTRIGGER ENGINE: STACKING DEPTH & ELEMENT ANIMATIONS
+       ========================================================================== -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 0. Theme Toggle (Light / Dark Mode with Persistence)
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (themeToggleBtn) {
+        if (theme === 'light') {
+          themeToggleBtn.setAttribute('title', 'Switch to Dark Mode');
+          themeToggleBtn.setAttribute('aria-label', 'Switch to Dark Mode');
+        } else {
+          themeToggleBtn.setAttribute('title', 'Switch to Light Mode');
+          themeToggleBtn.setAttribute('aria-label', 'Switch to Light Mode');
+        }
+      }
+      localStorage.setItem('capitrack-theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('capitrack-theme') || 
+      (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(savedTheme);
+
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        applyTheme(nextTheme);
+      });
+    }
+
+    // Mobile Navigation Drawer Toggle
+    const mobileNavToggle = document.getElementById('mobileNavToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-cta-btn');
+
+    if (mobileNavToggle && mobileDrawer) {
+      mobileNavToggle.addEventListener('click', () => {
+        const isOpen = mobileDrawer.classList.toggle('open');
+        mobileNavToggle.classList.toggle('open', isOpen);
+        mobileNavToggle.setAttribute('aria-expanded', isOpen);
+      });
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileDrawer.classList.remove('open');
+          mobileNavToggle.classList.remove('open');
+          mobileNavToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    function initShowcase() {
+      // 1. Hero Entrance Animations
+      gsap.from('.hero-pill', { y: 25, opacity: 0, duration: 0.7, ease: 'power3.out' });
+      gsap.from('.hero-title', { y: 35, opacity: 0, duration: 0.85, delay: 0.1, ease: 'power3.out' });
+      gsap.from('.hero-subtitle', { y: 25, opacity: 0, duration: 0.75, delay: 0.25, ease: 'power3.out' });
+      gsap.from('.hero-actions', { y: 20, opacity: 0, duration: 0.65, delay: 0.4, ease: 'power3.out' });
+      gsap.from('.hero-trust', { y: 20, opacity: 0, duration: 0.65, delay: 0.5, ease: 'power3.out' });
+      gsap.from('.hero-video-wrap', { y: 60, opacity: 0, duration: 1, delay: 0.6, ease: 'back.out(1.2)' });
+
+      // 2. Sticky Stacking Cards Engine
+      const cardWrappers = document.querySelectorAll('.sticky-card-wrapper');
+      const navButtons = document.querySelectorAll('.deck-nav-btn');
+
+      cardWrappers.forEach((wrapper, index) => {
+        const slide = wrapper.querySelector('.deck-slide');
+        const chapterNum = slide.querySelector('.card-chapter-num');
+        const badge = slide.querySelector('.card-badge');
+        const title = slide.querySelector('.card-title');
+        const desc = slide.querySelector('.card-description');
+        const bullets = slide.querySelectorAll('.feature-point-item');
+        const metrics = slide.querySelectorAll('.metric-box');
+        const phone = slide.querySelector('.phone-mockup');
+        const pill = slide.querySelector('.floating-pill');
+
+        // A. Content Reveal Animations for EVERY single text & visual item
+        const enterTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: wrapper,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+
+        if (chapterNum) enterTl.from(chapterNum, { x: -20, opacity: 0, duration: 0.4 }, 0);
+        if (badge) enterTl.from(badge, { scale: 0.88, opacity: 0, duration: 0.4 }, 0.05);
+        if (title) enterTl.from(title, { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out' }, 0.1);
+        if (desc) enterTl.from(desc, { y: 20, opacity: 0, duration: 0.5, ease: 'power3.out' }, 0.2);
+        if (bullets.length) enterTl.from(bullets, { x: -16, opacity: 0, stagger: 0.07, duration: 0.45 }, 0.25);
+        if (metrics.length) enterTl.from(metrics, { y: 20, scale: 0.88, opacity: 0, stagger: 0.08, duration: 0.5, ease: 'back.out(1.5)' }, 0.35);
+        if (phone) enterTl.from(phone, { y: 55, scale: 0.92, opacity: 0, duration: 0.85, ease: 'power3.out' }, 0.15);
+        if (pill) enterTl.from(pill, { scale: 0.8, opacity: 0, duration: 0.5 }, 0.35);
+
+        // B. Stacking Depth: When NEXT card scrolls over THIS card, scale down, dim & blur this card
+        if (index < cardWrappers.length - 1) {
+          const nextWrapper = cardWrappers[index + 1];
+          gsap.to(slide, {
+            scale: 0.93,
+            opacity: 0.35,
+            filter: 'blur(5px) brightness(0.4)',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: nextWrapper,
+              start: 'top 85%',
+              end: 'top 20%',
+              scrub: true
+            }
+          });
+        }
+
+        // C. Active Chapter Nav Pill Tracking on scroll
+        ScrollTrigger.create({
+          trigger: wrapper,
+          start: 'top 45%',
+          end: 'bottom 45%',
+          onEnter: () => setActiveNav(index),
+          onEnterBack: () => setActiveNav(index)
+        });
+
+        // D. Interactive Cursor Parallax: Moves phone and badge smoothly together in cursor direction
+        if (phone) {
+          wrapper.addEventListener('mousemove', (e) => {
+            const rect = wrapper.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+            gsap.to(phone, {
+              x: x * 18,
+              y: y * 18,
+              rotationY: x * 5,
+              rotationX: -y * 5,
+              duration: 0.5,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+
+            if (pill) {
+              gsap.to(pill, {
+                x: x * 28,
+                y: y * 28,
+                duration: 0.6,
+                ease: 'power2.out',
+                overwrite: 'auto'
+              });
+            }
+          });
+
+          wrapper.addEventListener('mouseleave', () => {
+            gsap.to(phone, {
+              x: 0,
+              y: 0,
+              rotationY: 0,
+              rotationX: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+            if (pill) {
+              gsap.to(pill, {
+                x: 0,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                overwrite: 'auto'
+              });
+            }
+          });
+        }
+      });
+
+      function setActiveNav(index) {
+        navButtons.forEach((btn, i) => {
+          btn.classList.toggle('active', i === index);
+        });
+      }
+
+      // 3. Quick-Nav Pill Button Click Handler
+      navButtons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetIndex = parseInt(btn.dataset.index, 10);
+          const targetWrapper = document.getElementById('card-' + targetIndex);
+          if (targetWrapper) {
+            const isMobile = window.innerWidth <= 640;
+            const topOffset = isMobile ? 70 : (window.innerWidth <= 860 ? 110 : 135);
+            const elementPosition = targetWrapper.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - topOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // 4. Smooth Anchor Scrolling for all links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (!targetId || targetId === '#') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+          }
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            const isMobile = window.innerWidth <= 640;
+            const headerOffset = isMobile ? 65 : 80;
+            const elementPosition = targetEl.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // 5. Matrix Table Rows Stagger Reveal
+      gsap.from('.matrix-table tr', {
+        y: 25,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.matrix-table-wrap',
+          start: 'top 80%'
+        }
+      });
+
+      // 6. Cinema Video Player Controls
+      const heroVideo = document.getElementById('heroVideo');
+      const soundBtn = document.getElementById('soundToggleBtn');
+      const soundIcon = document.getElementById('soundIcon');
+      const soundText = document.getElementById('soundText');
+      const playBtn = document.getElementById('playToggleBtn');
+      const playIcon = document.getElementById('playIcon');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+      const progressFill = document.getElementById('videoProgressFill');
+
+      if (heroVideo) {
+        // Sound toggle
+        soundBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (heroVideo.muted) {
+            heroVideo.muted = false;
+            soundIcon.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>`;
+            soundText.textContent = 'Audio On';
+            soundBtn.style.background = 'rgba(16, 185, 129, 0.3)';
+            soundBtn.style.borderColor = 'rgba(16, 185, 129, 0.6)';
+          } else {
+            heroVideo.muted = true;
+            soundIcon.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
+            soundText.textContent = 'Muted · Click for Audio';
+            soundBtn.style.background = 'rgba(10, 13, 22, 0.88)';
+            soundBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          }
+        });
+
+        // Play / Pause toggle
+        function togglePlay() {
+          if (heroVideo.paused) {
+            heroVideo.play();
+            playIcon.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.5"></rect><rect x="14" y="4" width="4" height="16" rx="1.5"></rect></svg>`;
+            playBtn.setAttribute('title', 'Pause');
+          } else {
+            heroVideo.pause();
+            playIcon.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+            playBtn.setAttribute('title', 'Play');
+          }
+        }
+
+        playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          togglePlay();
+        });
+
+        heroVideo.addEventListener('click', togglePlay);
+
+        heroVideo.addEventListener('play', () => {
+          playIcon.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1.5"></rect><rect x="14" y="4" width="4" height="16" rx="1.5"></rect></svg>`;
+          playBtn.setAttribute('title', 'Pause');
+        });
+
+        heroVideo.addEventListener('pause', () => {
+          playIcon.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+          playBtn.setAttribute('title', 'Play');
+        });
+
+        // Fullscreen
+        fullscreenBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (!document.fullscreenElement) {
+            if (heroVideo.requestFullscreen) {
+              heroVideo.requestFullscreen();
+            } else if (heroVideo.webkitRequestFullscreen) {
+              heroVideo.webkitRequestFullscreen();
+            }
+          } else {
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            }
+          }
+        });
+
+        // Progress bar updates
+        heroVideo.addEventListener('timeupdate', () => {
+          if (heroVideo.duration) {
+            const pct = (heroVideo.currentTime / heroVideo.duration) * 100;
+            progressFill.style.width = pct + '%';
+          }
+        });
+
+        // Autoplay attempt with fallback
+        const playPromise = heroVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            heroVideo.muted = true;
+            heroVideo.play().catch(() => {});
+          });
+        }
+      }
+
+      ScrollTrigger.refresh();
+    }
+
+    if (document.readyState === 'complete') {
+      initShowcase();
+    } else {
+      window.addEventListener('load', initShowcase);
+    }
+  </script>
+</body>
+</html>
